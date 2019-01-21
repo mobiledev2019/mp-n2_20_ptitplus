@@ -116,7 +116,7 @@ def init_home_page():
     """
     global r
     rps = r.get(home_url, headers = BROWSER_HEADERS)
-    with open('first_get.html', 'w') as f: f.write(rps.text)
+    # with open('first_get.html', 'w') as f: f.write(rps.text)
     if CAPTCHA_ELEMENT_ID in rps.text:
         print("CAPTCHA ELEMENT DETECTED!")
         return bypass_captcha(rps.text)
@@ -174,7 +174,7 @@ def main(msg):
     init()
     if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
         print('{} hop le.'.format(msg))
-        student_id = msg
+        student_id = msg.upper()
     else:
         return "MA SINH VIEN KHONG HOP LE"
     if init_home_page() == SUCCESS:
