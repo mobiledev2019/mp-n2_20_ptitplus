@@ -152,7 +152,7 @@ def get_daily_schedule_from_server_response(tkb_page_html_code):
 def schedule_list_to_string(tkb):
     global student_name, student_id
     course_cnt = len(tkb)
-    rtn = "Không tìm thấy thời khóa biểu nào tương ứng với username [{}]\nHọ và tên ->[{}]".format(student_id, student_name)
+    rtn = "Không tìm thấy thời khóa biểu nào tương ứng với username [{}]\nHọ và tên ->[{}]\n".format(student_id, student_name)
     if course_cnt:
         rtn = "Ngày {}, user {} có {} kíp!\n".format(datetime.datetime.today().strftime('%d/%m/%Y'), student_name, course_cnt)
         for index, course in enumerate(tkb):
