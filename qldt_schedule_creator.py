@@ -6,7 +6,7 @@ def init():
     """
     Initialize global variable and const
     """
-    global r, CAPTCHA_ELEMENT_ID, BROWSER_HEADERS, SUCCESS, FAILURE, home_url, tkb_url, subject_tooltip_pattern, student_id, student_name, student_id_pattern, teacher_id_pattern
+    global r, CAPTCHA_ELEMENT_ID, BROWSER_HEADERS, SUCCESS, FAILURE, home_url, tkb_url, subject_tooltip_pattern, student_id, student_name, student_id_pattern, teacher_id_pattern, date_of_year
     student_id_pattern = r"[a-zA-Z]{1}[0-9]{2}[a-zA-Z]{4}[0-9]{3}"
     teacher_id_pattern = r"[a-zA-Z]{2}[0-9]{4}"
     subject_tooltip_pattern = r"<td onmouseover=\"ddrivetip\((.*),''.*>"
@@ -136,7 +136,7 @@ def get_daily_schedule_from_server_response(tkb_page_html_code):
     Args:
         tkb_page_html_code: String object
     """
-    global student_name
+    global student_name, date_of_year
     rtn = []
     raw = tkb_page_html_code
     subjects = re.findall(subject_tooltip_pattern, raw)
@@ -155,8 +155,8 @@ def get_daily_schedule_from_server_response(tkb_page_html_code):
     # print(rtn)
     return rtn
 
-def schedule_list_to_string(tkb, date_of_year):
-    global student_name, student_id
+def schedule_list_to_string(tkb):
+    global student_name, student_id, date_of_year
     course_cnt = len(tkb)
     rtn = "Không tìm thấy thời khóa biểu nào tương ứng với username [{}]\nHọ và tên ->[{}]\n".format(student_id, student_name)
     if course_cnt:
@@ -186,6 +186,6 @@ def main(msg):
     else:
         return "MA SINH VIEN KHONG HOP LE"
     if init_home_page() == SUCCESS:
-        tkb, date_of_year = get_daily_schedule_from_server_response(get_tkb_page(student_id))
-        rps = schedule_list_to_string(tkb, date_of_year)
+        tkb = get_daily_schedule_from_server_response(get_tkb_page(student_id))
+        rps = schedule_list_to_string(tkb)
     return rps
