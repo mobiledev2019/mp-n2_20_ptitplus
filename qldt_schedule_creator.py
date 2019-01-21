@@ -29,8 +29,11 @@ def init():
 
 def get_current_day_of_week():
     current_hour = int(datetime.datetime.now().strftime("%H"))
-    if current_hour < 20: return datetime.datetime.today().weekday()
-    return datetime.datetime.today().weekday()+1
+    if current_hour < 19:
+        print("van som, hien thi lich trong ngay")
+        return datetime.datetime.today().weekday(), datetime.datetime.today().strftime('%d/%m/%Y')
+    print("muon roi, xem lich ngay mai nhe")
+    return datetime.datetime.today().weekday()+1, (datetime.datetime.today() + datetime.timedelta(days=1)).strftime('%d/%m/%Y')
 
 def day_of_week_str_to_int(dow):
     dow = dow.lower()
@@ -145,18 +148,19 @@ def get_daily_schedule_from_server_response(tkb_page_html_code):
         student_name = "KIỂM TRA LẠI MÃ"
     for subject in subjects:
         subject = subject.split(',')
-        if day_of_week_str_to_int(subject[3].lower()) == get_current_day_of_week():
+        day_of_week, date_of_year = get_current_day_of_week()
+        if day_of_week_str_to_int(subject[3].lower()) == day_of_week:
             sub = [subject[2], subject[1], subject[5], subject[6], subject[8]]
             rtn.append(sub)
     # print(rtn)
     return rtn
 
-def schedule_list_to_string(tkb):
+def schedule_list_to_string(tkb, date_of_year):
     global student_name, student_id
     course_cnt = len(tkb)
     rtn = "Không tìm thấy thời khóa biểu nào tương ứng với username [{}]\nHọ và tên ->[{}]\n".format(student_id, student_name)
     if course_cnt:
-        rtn = "Ngày {}, user {} có {} kíp!\n".format(datetime.datetime.today().strftime('%d/%m/%Y'), student_name, course_cnt)
+        rtn = "Ngày {}, user {} có {} kíp!\n".format(date_of_year, student_name, course_cnt)
         for index, course in enumerate(tkb):
             rtn += '*****[{}]*****\n{}\n{}\nGV: {}\nThời gian: {}\nĐịa điểm: {}\n'.format(index+1, course[0], course[1], course[4], start_time_int_to_hour(course[3]), course[2])
     rtn += "*****[END]*****\nfrom Bách Văn Khoa's keyboard with love! ;*"
@@ -182,6 +186,6 @@ def main(msg):
     else:
         return "MA SINH VIEN KHONG HOP LE"
     if init_home_page() == SUCCESS:
-        tkb = get_daily_schedule_from_server_response(get_tkb_page(student_id))
-        rps = schedule_list_to_string(tkb)
+        tkb, date_of_year = get_daily_schedule_from_server_response(get_tkb_page(student_id))
+        rps = schedule_list_to_string(tkb, date_of_year)
     return rps
