@@ -139,6 +139,8 @@ def get_daily_schedule_from_server_response(tkb_page_html_code):
     if student_name:
         student_name = student_name.group(1)
         # print("student name -> {}".format(student_name))
+    else:
+        student_name = "KIỂM TRA LẠI MÃ"
     for subject in subjects:
         subject = subject.split(',')
         if day_of_week_str_to_int(subject[3].lower()) == get_current_day_of_week():
@@ -150,7 +152,7 @@ def get_daily_schedule_from_server_response(tkb_page_html_code):
 def schedule_list_to_string(tkb):
     global student_name, student_id
     course_cnt = len(tkb)
-    rtn = "Không tìm thấy thời khóa biểu nào tương ứng với username [{}]\n".format(student_id)
+    rtn = "Không tìm thấy thời khóa biểu nào tương ứng với username [{}]\nHọ và tên ->[{}]".format(student_id, student_name)
     if course_cnt:
         rtn = "Ngày {}, user {} có {} kíp!\n".format(datetime.datetime.today().strftime('%d/%m/%Y'), student_name, course_cnt)
         for index, course in enumerate(tkb):
@@ -174,7 +176,6 @@ def main(msg):
     init()
     msg = str(msg)
     if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
-        print('{} hop le.'.format(msg))
         student_id = msg.upper()
     else:
         return "MA SINH VIEN KHONG HOP LE"
