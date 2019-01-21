@@ -1,4 +1,4 @@
-import flask, qldt_schedule_creator
+import flask, qldt_schedule_creator, os
 from flask import Flask, request
 app = Flask(__name__)
 
@@ -10,5 +10,5 @@ def api():
 @app.route('/', methods=['GET'])
 def index():
     return 'hello ^^,'
-
-app.run()
+port = int(os.environ.get('PORT', 5000))
+app.run(host='0.0.0.0', port = port)
