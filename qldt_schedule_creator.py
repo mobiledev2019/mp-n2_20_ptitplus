@@ -31,13 +31,13 @@ def get_current_day_of_week():
     tz = pytz.timezone('Asia/Ho_Chi_Minh')
     vn_now = datetime.datetime.now(tz)
     current_hour = int(vn_now.strftime("%H"))
-    current_date = vn_now.today().strftime('%d/%m/%Y')
-    current_day_of_week = vn_now.today().weekday()
+    current_date = vn_now.strftime('%d/%m/%Y')
+    current_day_of_week = vn_now.weekday()
     if current_hour < 20:
         print("van som, bay gio la {}, hien thi lich trong ngay {}".format(current_hour, current_date))
         return current_day_of_week, current_date
     print("muon roi, {} gio roi, xem lich ngay mai nhe".format(current_hour))
-    return (vn_now.today().weekday()+1)%7, (vn_now.today() + datetime.timedelta(days=1)).strftime('%d/%m/%Y')
+    return (vn_now.weekday()+1)%7, (vn_now + datetime.timedelta(days=1)).strftime('%d/%m/%Y')
 
 def day_of_week_str_to_int(dow):
     dow = dow.lower()
