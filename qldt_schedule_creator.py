@@ -172,6 +172,7 @@ def get_tkb_page(student_id):
 def main(msg):
     global student_id
     init()
+    msg = str(msg)
     if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
         print('{} hop le.'.format(msg))
         student_id = msg.upper()
@@ -181,7 +182,3 @@ def main(msg):
         tkb = get_daily_schedule_from_server_response(get_tkb_page(student_id))
         rps = schedule_list_to_string(tkb)
     return rps
-
-if __name__ == '__main__':
-    print(main('ht1005'))
-    print("DONE!")
