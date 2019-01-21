@@ -30,9 +30,9 @@ def init():
 def get_current_day_of_week():
     current_hour = int(datetime.datetime.now().strftime("%H"))
     if current_hour < 19:
-        print("van som, hien thi lich trong ngay")
+        print("van som, bay gio la {}, hien thi lich trong ngay".format(current_hour))
         return datetime.datetime.today().weekday(), datetime.datetime.today().strftime('%d/%m/%Y')
-    print("muon roi, xem lich ngay mai nhe")
+    print("muon roi, {} gio roi, xem lich ngay mai nhe".format(current_hour))
     return datetime.datetime.today().weekday()+1, (datetime.datetime.today() + datetime.timedelta(days=1)).strftime('%d/%m/%Y')
 
 def day_of_week_str_to_int(dow):
@@ -123,7 +123,7 @@ def init_home_page():
     rps = r.get(home_url, headers = BROWSER_HEADERS)
     # with open('first_get.html', 'w') as f: f.write(rps.text)
     if CAPTCHA_ELEMENT_ID in rps.text:
-        print("CAPTCHA ELEMENT DETECTED!")
+        # print("CAPTCHA ELEMENT DETECTED!")
         return bypass_captcha(rps.text)
     else:
         print("NO CAPTCHA")
