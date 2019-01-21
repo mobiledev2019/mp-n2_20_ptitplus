@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/api', methods=['GET'])
 def api():
-    msg = request.args.get('id')
+    msg = request.args.get('last user freeform input')
     return qldt_schedule_creator.main(msg)
 
 @app.route('/', methods=['GET'])
