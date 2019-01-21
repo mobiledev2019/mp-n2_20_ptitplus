@@ -7,4 +7,8 @@ def api():
     msg = request.args.get('id')
     return qldt_schedule_creator.main(msg)
 
+@app.route('/', methods=['GET'])
+def index():
+    return 'hello ^^,'
+
 app.run()
