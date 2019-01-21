@@ -35,7 +35,7 @@ def get_current_day_of_week():
         # print("van som, bay gio la {}, hien thi lich trong ngay".format(current_hour))
         return vn_now.today().weekday(), vn_now.today().strftime('%d/%m/%Y')
     # print("muon roi, {} gio roi, xem lich ngay mai nhe".format(current_hour))
-    return vn_now.today().weekday()+1, (vn_now.today() + datetime.timedelta(days=1)).strftime('%d/%m/%Y')
+    return (vn_now.today().weekday()+1)%7, (vn_now.today() + datetime.timedelta(days=1)).strftime('%d/%m/%Y')
 
 def day_of_week_str_to_int(dow):
     dow = dow.lower()
@@ -151,6 +151,7 @@ def get_daily_schedule_from_server_response(tkb_page_html_code):
     for subject in subjects:
         subject = subject.split(',')
         day_of_week, date_of_year = get_current_day_of_week()
+        # print("lay tkb voi day_of_week = {}, date_of_year = {}".format(day_of_week, date_of_year))
         if day_of_week_str_to_int(subject[3].lower()) == day_of_week:
             sub = [subject[2], subject[1], subject[5], subject[6], subject[8]]
             rtn.append(sub)
