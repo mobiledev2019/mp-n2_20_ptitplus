@@ -1,11 +1,17 @@
 import flask, qldt_schedule_creator, os
-from flask import Flask, request
+from flask import Flask, request, json
 app = Flask(__name__)
 
 @app.route('/api', methods=['GET'])
 def api():
     msg = request.args.get('last user freeform input')
-    return qldt_schedule_creator.main(msg)
+    result = qldt_schedule_creator.main(msg)
+    j = {
+        "message":{
+            "text":result
+        }
+    }
+    return json.dumps(j)
 
 @app.route('/', methods=['GET'])
 def index():
