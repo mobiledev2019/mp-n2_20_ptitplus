@@ -7,9 +7,9 @@ def api():
     msg = request.args.get('last user freeform input')
     result = qldt_schedule_creator.main(msg)
     j = {
-        "message":{
-            "text":result
-        }
+        "message":[
+            {"text":result}
+        ]
     }
     return json.dumps(j)
 
