@@ -1,4 +1,4 @@
-import requests, re, json, time, datetime
+import requests, re, json, time, datetime, pytz
 
 
 
@@ -28,8 +28,10 @@ def init():
     return
 
 def get_current_day_of_week():
-    current_hour = int(datetime.datetime.now().strftime("%H"))
-    if current_hour < 19:
+    tz = pytz.timezone('Asia/Ho_Chi_Minh')
+    vn_now = datetime.datetime.now(tz)
+    current_hour = int(vn_now.strftime("%H"))
+    if current_hour < 20:
         print("van som, bay gio la {}, hien thi lich trong ngay".format(current_hour))
         return datetime.datetime.today().weekday(), datetime.datetime.today().strftime('%d/%m/%Y')
     print("muon roi, {} gio roi, xem lich ngay mai nhe".format(current_hour))
