@@ -32,9 +32,9 @@ def get_current_day_of_week():
     vn_now = datetime.datetime.now(tz)
     current_hour = int(vn_now.strftime("%H"))
     if current_hour < 20:
-        # print("van som, bay gio la {}, hien thi lich trong ngay".format(current_hour))
+        print("van som, bay gio la {}, hien thi lich trong ngay".format(current_hour))
         return vn_now.today().weekday(), vn_now.today().strftime('%d/%m/%Y')
-    # print("muon roi, {} gio roi, xem lich ngay mai nhe".format(current_hour))
+    print("muon roi, {} gio roi, xem lich ngay mai nhe".format(current_hour))
     return (vn_now.today().weekday()+1)%7, (vn_now.today() + datetime.timedelta(days=1)).strftime('%d/%m/%Y')
 
 def day_of_week_str_to_int(dow):
