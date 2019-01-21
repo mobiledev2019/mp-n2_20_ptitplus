@@ -28,7 +28,9 @@ def init():
     return
 
 def get_current_day_of_week():
-    return datetime.datetime.today().weekday()
+    current_hour = int(datetime.datetime.now().strftime("%H"))
+    if current_hour < 20: return datetime.datetime.today().weekday()
+    return datetime.datetime.today().weekday()+1
 
 def day_of_week_str_to_int(dow):
     dow = dow.lower()
