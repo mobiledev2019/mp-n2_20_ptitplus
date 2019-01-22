@@ -198,7 +198,7 @@ def get_tkb_page(student_id):
         pass
     img_url = img_uploader.up(generated_img)
     print(img_url)
-    return rtn, img_url
+    return rtn
 
 def main(msg):
     global student_id
