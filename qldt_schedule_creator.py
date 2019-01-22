@@ -200,7 +200,7 @@ def get_tkb_page(student_id):
     return rtn
 
 def main(msg):
-    global student_id
+    global student_id, img_url
     init()
     msg = str(msg)
     if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
@@ -210,4 +210,4 @@ def main(msg):
     if init_home_page() == SUCCESS:
         tkb = get_daily_schedule_from_server_response(get_tkb_page(student_id))
         rps = schedule_list_to_string(tkb)
-    return rps, img_url
+    return rps, None
