@@ -1,5 +1,4 @@
-import requests, re, json, time, datetime, pytz
-
+import requests, re, json, time, datetime, pytz, imgkit, img_uploader, traceback
 
 
 def init():
@@ -180,6 +179,25 @@ def get_tkb_page(student_id):
     """
     global r
     rtn = r.get(tkb_url + student_id).text
+    head_tag_position = rtn.index('<head>')
+    with open('inject_css', 'r') as f: inject_data = f.read()
+    rtn = rtn[:head_tag_position] + inject_data + rtn[head_tag_position:]
+    offline_schedule_file = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y') + '.html'
+    with open(offline_schedule_file, 'w') as f: f.write(rtn)
+    options = {
+        'width':2048,
+        'crop-h':800,
+        'crop-w':1650,
+        'crop-x':200,
+        'crop-y':300
+    }
+    generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y')+'.jpg'
+    try:
+        imgkit.from_string(rtn, generated_img, options = options)
+    except:
+        pass
+    img_url = img_uploader.up(generated_img)
+    print(img_url)
     return rtn
 
 def main(msg):
