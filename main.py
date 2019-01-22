@@ -8,10 +8,15 @@ def api():
     rps_text, rps_url = qldt_schedule_creator.main(msg)
     j = {
         "messages":[
-            {"text":rps_text},
-            {'attachment':{'type':'image','payload':{'url':rps_url}}}
+            {"text":rps_text}
         ]
     }
+    # j = {
+    #     "messages":[
+    #         {"text":rps_text},
+    #         {'attachment':{'type':'image','payload':{'url':rps_url}}}
+    #     ]
+    # }
     # print(j)
     return jsonify(j)
 
