@@ -5,12 +5,21 @@ app = Flask(__name__)
 @app.route('/api', methods=['GET'])
 def api():
     msg = request.args.get('last user freeform input')
-    result = qldt_schedule_creator.main(msg)
+    rps_text, rps_url = qldt_schedule_creator.main(msg)
     j = {
         "messages":[
-            {"text":result}
+            {"text":rps_text}
         ]
     }
+    if rps_url != None:
+        j['messages'].append({
+            'attachment':{
+                'type':'image',
+                'payload':{
+                    'url':rps_url
+                }
+            }
+        })
     return jsonify(j)
 
 @app.route('/test', methods=['GET'])

@@ -5,7 +5,7 @@ def init():
     """
     Initialize global variable and const
     """
-    global r, CAPTCHA_ELEMENT_ID, BROWSER_HEADERS, SUCCESS, FAILURE, home_url, tkb_url, subject_tooltip_pattern, student_id, student_name, student_id_pattern, teacher_id_pattern, date_of_year
+    global r, CAPTCHA_ELEMENT_ID, BROWSER_HEADERS, SUCCESS, FAILURE, home_url, tkb_url, subject_tooltip_pattern, student_id, student_name, student_id_pattern, teacher_id_pattern, date_of_year, img_url
     student_id_pattern = r"[a-zA-Z]{1}[0-9]{2}[a-zA-Z]{4}[0-9]{3}"
     teacher_id_pattern = r"[a-zA-Z]{2}[0-9]{4}"
     subject_tooltip_pattern = r"<td onmouseover=\"ddrivetip\((.*),''.*>"
@@ -177,7 +177,7 @@ def get_tkb_page(student_id):
     Args:
         student_id: String object
     """
-    global r
+    global r, img_url
     rtn = r.get(tkb_url + student_id).text
     head_tag_position = rtn.index('<head>')
     with open('inject_css', 'r') as f: inject_data = f.read()
@@ -198,7 +198,7 @@ def get_tkb_page(student_id):
         pass
     img_url = img_uploader.up(generated_img)
     print(img_url)
-    return rtn
+    return rtn, img_url
 
 def main(msg):
     global student_id
@@ -207,8 +207,8 @@ def main(msg):
     if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
         student_id = msg.upper()
     else:
-        return "MA SINH VIEN KHONG HOP LE"
+        return "MA SINH VIEN KHONG HOP LE", None
     if init_home_page() == SUCCESS:
         tkb = get_daily_schedule_from_server_response(get_tkb_page(student_id))
         rps = schedule_list_to_string(tkb)
-    return rps
+    return rps, img_url
