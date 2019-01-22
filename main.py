@@ -12,14 +12,21 @@ def api():
             {'attachment':{'type':'image','payload':{'url':rps_url}}}
         ]
     }
+    print(j)
     return jsonify(j)
 
 @app.route('/test', methods=['GET'])
 def test():
     test_1950 = {
-    "messages": [
-            {"text": "Welcome to the Chatfuel Rockets!"},
-            {"text": "What are you up to?"}
+        "messages": [
+            {
+            "attachment": {
+                "type": "image",
+                "payload": {
+                "url": "https://res.cloudinary.com/bachvkhoa/image/upload/v1548167300/ptit/B15DCCN334_weekly_22-01-2019_xs6ler.jpg"
+                }
+            }
+            }
         ]
     }
     return jsonify(test_1950)
