@@ -12,7 +12,7 @@ def api():
             {'attachment':{'type':'image','payload':{'url':rps_url}}}
         ]
     }
-    print(j)
+    # print(j)
     return jsonify(j)
 
 @app.route('/test', methods=['GET'])
