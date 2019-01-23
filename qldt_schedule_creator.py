@@ -1,4 +1,4 @@
-import requests, re, json, time, datetime, pytz, imgkit, img_uploader, traceback, os
+import requests, re, json, time, datetime, pytz, imgkit, img_uploader, traceback, os, subprocess
 
 
 def init():
@@ -213,8 +213,9 @@ def main(msg, debug):
     init()
     if 'DYNO' in os.environ:
         print ('loading wkhtmltopdf path on heroku')
-        MYDIR = os.path.dirname(__file__)    
-        WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/vendor/wkhtmltox/lib/", "libwkhtmltox.so")
+        WKHTMLTOPDF_CMD = subprocess.Popen(
+            ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
+            stdout=subprocess.PIPE).communicate()[0].strip()
     else:
         print ('loading wkhtmltopdf path on localhost')
         MYDIR = os.path.dirname(__file__)    
