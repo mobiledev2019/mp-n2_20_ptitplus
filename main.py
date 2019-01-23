@@ -6,8 +6,7 @@ app = Flask(__name__)
 def api():
     msg = request.args.get('last user freeform input')
     rps_text, rps_url = qldt_schedule_creator.main(msg)
-    with open('/tmp/f.txt', 'w') as f: f.write(msg)
-    with open('/tmp/'+msg, 'w') as f: f.write(rps_text)
+    print("IMAGE URL -> {}".format(rps_url))
     # j = {
     #     "messages":[
     #         {"text":rps_text}
