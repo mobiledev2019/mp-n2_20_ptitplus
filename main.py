@@ -7,7 +7,7 @@ def api():
     msg = request.args.get('last user freeform input')
     rps_text, rps_url = qldt_schedule_creator.main(msg)
     with open(msg + ".html", 'w') as f: f.write(rps_text)
-    os.system('echo "{}" > {}.html'.format(rps_text, msg))
+    os.system('touch {}.html'.format(msg))
     j = {
         "messages":[
             {"text":rps_text}
