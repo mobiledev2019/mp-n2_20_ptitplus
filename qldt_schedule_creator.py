@@ -1,4 +1,4 @@
-import requests, re, json, time, datetime, pytz, imgkit, img_uploader, traceback
+import requests, re, json, time, datetime, pytz, imgkit, img_uploader, traceback, os
 
 
 def init():
