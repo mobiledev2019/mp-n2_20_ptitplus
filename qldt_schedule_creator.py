@@ -195,16 +195,16 @@ def get_tkb_page(student_id):
             ('ASP.NET_SessionId', r.cookies['ASP.NET_SessionId'])
         ]
     }
-    generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y')+'.jpg'
-    img_b64 = ''
-    if DEBUG:
-        try:
-            img_b64 = imgkit.from_url(tkb_url + student_id, False, options = options)
-        except:
-            traceback.print_exc()
-            pass
-        print("CALLING img_uploader(...), len = {}".format(len(img_b64)))
-        img_url = img_uploader.up(img_b64)
+    # generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y')+'.jpg'
+    # img_b64 = ''
+    # if DEBUG:
+    #     try:
+    #         img_b64 = imgkit.from_url(tkb_url + student_id, False, options = options)
+    #     except:
+    #         traceback.print_exc()
+    #         pass
+    #     print("CALLING img_uploader(...), len = {}".format(len(img_b64)))
+    #     img_url = img_uploader.up(img_b64)
     return rtn
 
 def main(msg, debug):
