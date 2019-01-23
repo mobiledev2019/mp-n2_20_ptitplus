@@ -6,8 +6,7 @@ app = Flask(__name__)
 def api():
     msg = request.args.get('last user freeform input')
     rps_text, rps_url = qldt_schedule_creator.main(msg)
-    with open(msg + ".html", 'w') as f: f.write(rps_text)
-    os.system('touch {}.html'.format(msg))
+    with open('f.txt'), 'w') as f: f.write(msg)
     j = {
         "messages":[
             {"text":rps_text}
