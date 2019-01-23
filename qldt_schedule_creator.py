@@ -6,6 +6,7 @@ def init():
     Initialize global variable and const
     """
     global r, CAPTCHA_ELEMENT_ID, BROWSER_HEADERS, SUCCESS, FAILURE, home_url, tkb_url, subject_tooltip_pattern, student_id, student_name, student_id_pattern, teacher_id_pattern, date_of_year, img_url
+    img_url = None
     student_id_pattern = r"[a-zA-Z]{1}[0-9]{2}[a-zA-Z]{4}[0-9]{3}"
     teacher_id_pattern = r"[a-zA-Z]{2}[0-9]{4}"
     subject_tooltip_pattern = r"<td onmouseover=\"ddrivetip\((.*),''.*>"
@@ -192,11 +193,11 @@ def get_tkb_page(student_id):
         'crop-y':300
     }
     generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y')+'.jpg'
-    # try:
-    #     imgkit.from_string(rtn, generated_img, options = options)
-    # except:
-    #     pass
-    # img_url = img_uploader.up(generated_img)
+    try:
+        imgkit.from_string(rtn, './tmp/img.jpg', options = options)
+    except:
+        pass
+    img_url = img_uploader.up('./tmp/img.jpg')
     return rtn
 
 def main(msg):
@@ -211,4 +212,4 @@ def main(msg):
     if init_home_page() == SUCCESS:
         tkb = get_daily_schedule_from_server_response(get_tkb_page(student_id))
         rps = schedule_list_to_string(tkb)
-    return rps, None
+    return rps, img_url
