@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/api', methods=['GET'])
 def api():
     msg = request.args.get('last user freeform input')
-    rps_text, rps_url = qldt_schedule_creator.main(msg)
+    rps_text, rps_url = qldt_schedule_creator.main(msg, debug = False)
     print("IMAGE URL -> {}".format(rps_url))
     j = {
         "messages":[
@@ -26,7 +26,7 @@ def api():
 @app.route('/test', methods=['GET'])
 def test():
     msg = request.args.get('id')
-    rps_text, rps_url = qldt_schedule_creator.main(msg)
+    rps_text, rps_url = qldt_schedule_creator.main(msg, debug = True)
     print("IMAGE URL -> {}".format(rps_url))
     # j = {
     #     "messages":[

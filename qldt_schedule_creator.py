@@ -5,7 +5,7 @@ def init():
     """
     Initialize global variable and const
     """
-    global r, CAPTCHA_ELEMENT_ID, BROWSER_HEADERS, SUCCESS, FAILURE, home_url, tkb_url, subject_tooltip_pattern, student_id, student_name, student_id_pattern, teacher_id_pattern, date_of_year, img_url
+    global r, CAPTCHA_ELEMENT_ID, BROWSER_HEADERS, SUCCESS, DEBUG, FAILURE, home_url, tkb_url, subject_tooltip_pattern, student_id, student_name, student_id_pattern, teacher_id_pattern, date_of_year, img_url
     img_url = None
     student_id_pattern = r"[a-zA-Z]{1}[0-9]{2}[a-zA-Z]{4}[0-9]{3}"
     teacher_id_pattern = r"[a-zA-Z]{2}[0-9]{4}"
@@ -197,17 +197,19 @@ def get_tkb_page(student_id):
     }
     generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y')+'.jpg'
     img_b64 = ''
-    try:
-        img_b64 = imgkit.from_url(tkb_url + student_id, False, options = options)
-    except:
-        traceback.print_exc()
-        pass
-    print("CALLING img_uploader(...), len = {}".format(len(img_b64)))
-    img_url = img_uploader.up(img_b64)
+    if DEBUG:
+        try:
+            img_b64 = imgkit.from_url(tkb_url + student_id, False, options = options)
+        except:
+            traceback.print_exc()
+            pass
+        print("CALLING img_uploader(...), len = {}".format(len(img_b64)))
+        img_url = img_uploader.up(img_b64)
     return rtn
 
-def main(msg):
-    global student_id, img_url
+def main(msg, debug):
+    global student_id, img_url, DEBUG
+    DEBUG = debug
     init()
     if 'DYNO' in os.environ:
         print ('loading wkhtmltopdf path on heroku')
