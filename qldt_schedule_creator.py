@@ -180,24 +180,29 @@ def get_tkb_page(student_id):
     """
     global r, img_url
     rtn = r.get(tkb_url + student_id).text
-    head_tag_position = rtn.index('<head>')
-    with open('inject_css', 'r') as f: inject_data = f.read()
-    rtn = rtn[:head_tag_position] + inject_data + rtn[head_tag_position:]
+    # head_tag_position = rtn.index('<head>')
+    # with open('inject.css', 'r') as f: inject_data = f.read()
+    # rtn = rtn[:head_tag_position] + inject_data + rtn[head_tag_position:]
     offline_schedule_file = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y') + '.html'
     with open(offline_schedule_file, 'w') as f: f.write(rtn)
     options = {
         'width':2048,
-        'crop-h':800,
-        'crop-w':1650,
-        'crop-x':200,
-        'crop-y':300
+        'crop-h':580,
+        'crop-w':1200,
+        'crop-x':420,
+        'crop-y':250,
+        'cookie':[
+            ('ASP.NET_SessionId', r.cookies['ASP.NET_SessionId'])
+        ]
     }
     generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y')+'.jpg'
-    # try:
-    #     imgkit.from_string(rtn, './tmp/img.jpg', options = options)
-    # except:
-    #     pass
-    # img_url = img_uploader.up('./tmp/img.jpg')
+    img_b64 = ''
+    try:
+        img_b64 = imgkit.from_url(tkb_url + student_id, False, options = options)
+    except:
+        # traceback.print_exc()
+        pass
+    img_url = img_uploader.up(img_b64)
     return rtn
 
 def main(msg):
