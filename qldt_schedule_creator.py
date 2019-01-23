@@ -209,6 +209,14 @@ def get_tkb_page(student_id):
 def main(msg):
     global student_id, img_url
     init()
+    if 'DYNO' in os.environ:
+        print ('loading wkhtmltopdf path on heroku')
+        MYDIR = os.path.dirname(__file__)    
+        WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/vendor/wkhtmltox/lib/", "libwkhtmltox.so")
+    else:
+        print ('loading wkhtmltopdf path on localhost')
+        MYDIR = os.path.dirname(__file__)    
+        WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/static/executables/bin/", "wkhtmltopdf.exe")
     msg = str(msg)
     if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
         student_id = msg.upper()
