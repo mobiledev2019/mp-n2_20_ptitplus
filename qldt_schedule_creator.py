@@ -202,6 +202,7 @@ def get_tkb_page(student_id):
     except:
         # traceback.print_exc()
         pass
+    print("CALLING img_uploader(), len = {}".format(len(img_b64)))
     img_url = img_uploader.up(img_b64)
     return rtn
 
