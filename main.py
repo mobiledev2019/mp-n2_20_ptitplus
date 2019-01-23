@@ -7,6 +7,27 @@ def api():
     msg = request.args.get('last user freeform input')
     rps_text, rps_url = qldt_schedule_creator.main(msg)
     print("IMAGE URL -> {}".format(rps_url))
+    j = {
+        "messages":[
+            {"text":rps_text}
+        ]
+    }
+    # j = {
+    #     "messages":[
+    #         {"text":rps_text},
+    #         {'attachment':{'type':'image','payload':{'url':rps_url}}}
+    #     ]
+    # }
+    # print(j)
+    return jsonify(j)
+
+
+
+@app.route('/test', methods=['GET'])
+def test():
+    msg = request.args.get('id')
+    rps_text, rps_url = qldt_schedule_creator.main(msg)
+    print("IMAGE URL -> {}".format(rps_url))
     # j = {
     #     "messages":[
     #         {"text":rps_text}
@@ -21,21 +42,6 @@ def api():
     # print(j)
     return jsonify(j)
 
-@app.route('/test', methods=['GET'])
-def test():
-    test_1950 = {
-        "messages": [
-            {
-            "attachment": {
-                "type": "image",
-                "payload": {
-                "url": "https://res.cloudinary.com/bachvkhoa/image/upload/v1548167300/ptit/B15DCCN334_weekly_22-01-2019_xs6ler.jpg"
-                }
-            }
-            }
-        ]
-    }
-    return jsonify(test_1950)
 
 @app.route('/', methods=['GET'])
 def index():
