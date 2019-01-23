@@ -225,7 +225,7 @@ def main(msg, debug):
         student_id = msg.upper()
     else:
         return "MA SINH VIEN KHONG HOP LE", None
-    print("Nhan duoc yeu cau moi, code -> {}".format(student_id))
+    print("Nhan duoc yeu cau moi, code  -> {}".format(student_id))
     if init_home_page() == SUCCESS:
         tkb = get_daily_schedule_from_server_response(get_tkb_page(student_id))
         rps = schedule_list_to_string(tkb)
