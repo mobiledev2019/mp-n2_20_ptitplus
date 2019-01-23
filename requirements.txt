@@ -3,3 +3,4 @@ flask
 pytz
 imgkit
 cloudinary
+gunicorn
