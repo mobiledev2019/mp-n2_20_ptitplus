@@ -4,5 +4,4 @@ pytz
 imgkit
 cloudinary
 gunicorn
-wkhtmltopdf-pack-ng==0.12.3.0
 wkhtmltopdf
