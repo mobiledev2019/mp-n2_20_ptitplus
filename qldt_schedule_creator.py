@@ -193,11 +193,11 @@ def get_tkb_page(student_id):
         'crop-y':300
     }
     generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y')+'.jpg'
-    try:
-        imgkit.from_string(rtn, './tmp/img.jpg', options = options)
-    except:
-        pass
-    img_url = img_uploader.up('./tmp/img.jpg')
+    # try:
+    #     imgkit.from_string(rtn, './tmp/img.jpg', options = options)
+    # except:
+    #     pass
+    # img_url = img_uploader.up('./tmp/img.jpg')
     return rtn
 
 def main(msg):
