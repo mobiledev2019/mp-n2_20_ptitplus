@@ -7,18 +7,17 @@ def api():
     msg = request.args.get('last user freeform input')
     rps_text, rps_url = qldt_schedule_creator.main(msg, debug = False)
     print("IMAGE URL -> {}".format(rps_url))
-    j = {
-        "messages":[
-            {"text":rps_text}
-        ]
-    }
     # j = {
     #     "messages":[
-    #         {"text":rps_text},
-    #         {'attachment':{'type':'image','payload':{'url':rps_url}}}
+    #         {"text":rps_text}
     #     ]
     # }
-    # print(j)
+    j = {
+        "messages":[
+            {"text":rps_text},
+            {'attachment':{'type':'image','payload':{'url':rps_url}}}
+        ]
+    }
     return jsonify(j)
 
 
@@ -28,11 +27,6 @@ def test():
     msg = request.args.get('id')
     rps_text, rps_url = qldt_schedule_creator.main(msg, debug = True)
     print("IMAGE URL -> {}".format(rps_url))
-    # j = {
-    #     "messages":[
-    #         {"text":rps_text}
-    #     ]
-    # }
     j = {
         "messages":[
             {"text":rps_text},

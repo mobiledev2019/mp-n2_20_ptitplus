@@ -217,8 +217,7 @@ def get_tkb_page(student_id):
     
     # generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%H:%m%s %d-%m-%Y')+'.jpg'
 
-    if DEBUG:
-        img_url = heroku_generate_image(student_id, r.cookies['ASP.NET_SessionId'])
+    img_url = heroku_generate_image(student_id, r.cookies['ASP.NET_SessionId'])
     return rtn
 
 def main(msg, debug):
