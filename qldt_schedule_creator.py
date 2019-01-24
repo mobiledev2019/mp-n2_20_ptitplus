@@ -181,7 +181,7 @@ def heroku_generate_image(student_id, cookie_value):
         'crop-x':410,
         'crop-y':250,
         'cookie':[['ASP.NET_SessionId', cookie_value]],
-        'user-style-sheet':'https://gist.githubusercontent.com/28dec/5a8c5e5b5317a2a2f563973f9d304320/raw/19b9bb2eafff095c226d12cb3235904f84feb699/lpht_inject_css.css'
+        'user-style-sheet':'inject.css'
     }
     cmd = '/app/bin/wkhtmltoimage '
     for key in options:

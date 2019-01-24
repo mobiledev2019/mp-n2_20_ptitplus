@@ -1,0 +1,21 @@
+<meta charset="UTF-8">
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    #ctl00_ContentPlaceHolder1_ctl00_Table1 > tbody > tr:nth-child(4){
+        border-bottom: solid blue 5px !important;
+    }
+    #ctl00_ContentPlaceHolder1_ctl00_lblngay, #ctl00_ContentPlaceHolder1_ctl00_lblngayden {
+        color:red !important;
+        font-size: 15px !important;
+    }
+    #ctl00_ContentPlaceHolder1_ctl00_Table1 > tbody > tr:not(:last-child) > td:not(:first-child):not(:last-child) {
+        height: 30px !important;
+        width: 100px !important;
+        border: solid black 1px;
+    }
+    /* #ctl00_ContentPlaceHolder1_ctl00_Table1 > tbody > tr > td > table {
+        width: 100px !important;
+    } */
+</style>
