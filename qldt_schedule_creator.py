@@ -178,7 +178,7 @@ def heroku_generate_image(student_id, cookie_value):
         'width':2048,
         'crop-h':580,
         'crop-w':1200,
-        'crop-x':410,
+        'crop-x':400,
         'crop-y':250,
         'cookie':[['ASP.NET_SessionId', cookie_value]],
         'user-style-sheet':'inject.css'
