@@ -10,8 +10,8 @@ def up(img):
     for f in crr_dir:
         if f[-4:] == '.jpg':
             print('[OK] img found -> {}'.format(f))
+            rps = uploader.unsigned_upload(img, preset_code, cloud_name=cloudname)
         else:
             print('[  ]{} is not a jpg file'.format(f))
-    # rps = uploader.unsigned_upload(img, preset_code, cloud_name=cloudname)
     url = rps['secure_url']
     return url
