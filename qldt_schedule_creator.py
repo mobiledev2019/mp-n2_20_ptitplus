@@ -182,7 +182,7 @@ def heroku_generate_image(student_id, cookie_value):
         'crop-y':250,
         'cookie':[['ASP.NET_SessionId', cookie_value]]
     }
-    cmd = './bin/wkhtmltoimage '
+    cmd = '/app/bin/wkhtmltoimage '
     for key in options:
         # print(type(options[key]))
         # continue
@@ -195,7 +195,7 @@ def heroku_generate_image(student_id, cookie_value):
             cmd += '--' + str(key) + ' ' + str(options[key]) + ' '
     cmd += "'" + url + student_id + "' "
     timestamp = int(time.time()*10000000)
-    outfile = '\'./' + student_id + '_' + str(timestamp) + '.jpg\''
+    outfile = '\'app/' + student_id + '_' + str(timestamp) + '.jpg\''
     cmd += outfile
     print('cmd -> [{}]'.format(cmd))
     subprocess.call(cmd)
