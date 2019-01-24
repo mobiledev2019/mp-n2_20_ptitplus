@@ -195,7 +195,7 @@ def heroku_generate_image(student_id):
             cmd += '--' + str(key) + ' ' + str(options[key]) + ' '
     cmd += url + student_id + ' '
     timestamp = int(time.time()*10000000)
-    outfile = student_id + '_' + str(timestamp) + '.jpg'
+    outfile = './' + student_id + '_' + str(timestamp) + '.jpg'
     cmd += outfile
     os.system(cmd)
     img_url = img_uploader.up(outfile)
