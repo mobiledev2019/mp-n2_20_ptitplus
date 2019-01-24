@@ -172,7 +172,7 @@ def schedule_list_to_string(tkb):
     return rtn
 
 def heroku_generate_image(student_id):
-    url = 'http://qldt.ptit.edu.vn?id='
+    url = 'http://qldt.ptit.edu.vn/Default.aspx?page=thoikhoabieu&id='
     options = {
         'quality':100,
         'width':2048,
@@ -219,7 +219,8 @@ def get_tkb_page(student_id):
     
     # generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%H:%m%s %d-%m-%Y')+'.jpg'
 
-    img_url = heroku_generate_image(student_id)
+    if DEBUG:
+        img_url = heroku_generate_image(student_id)
     return rtn
 
 def main(msg, debug):
