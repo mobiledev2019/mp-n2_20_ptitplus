@@ -171,7 +171,7 @@ def schedule_list_to_string(tkb):
     rtn += "*****[END]*****\nfrom Bách Văn Khoa's keyboard with love! ;*"
     return rtn
 
-def heroku_generate_image(student_id):
+def heroku_generate_image(student_id, cookie_value):
     url = 'http://qldt.ptit.edu.vn/Default.aspx?page=thoikhoabieu&id='
     options = {
         'quality':100,
@@ -180,7 +180,7 @@ def heroku_generate_image(student_id):
         'crop-w':1200,
         'crop-x':420,
         'crop-y':250,
-        'cookie':[['ASP.NET_SessionId', 'ASP.NET_SessionId_value']]
+        'cookie':[['ASP.NET_SessionId', cookie_value]]
     }
     cmd = './bin/wkhtmltoimage '
     for key in options:
@@ -197,6 +197,7 @@ def heroku_generate_image(student_id):
     timestamp = int(time.time()*10000000)
     outfile = './' + student_id + '_' + str(timestamp) + '.jpg'
     cmd += outfile
+    print('cmd -> [{}]'.format(cmd))
     os.system(cmd)
     img_url = img_uploader.up(outfile)
     os.system('rm {}'.format(outfile))
@@ -220,7 +221,7 @@ def get_tkb_page(student_id):
     # generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%H:%m%s %d-%m-%Y')+'.jpg'
 
     if DEBUG:
-        img_url = heroku_generate_image(student_id)
+        img_url = heroku_generate_image(student_id, r.cookies['ASP.NET_SessionId'])
     return rtn
 
 def main(msg, debug):
