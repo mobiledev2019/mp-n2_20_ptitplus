@@ -228,15 +228,17 @@ def main(msg, debug):
     global student_id, img_url, DEBUG
     DEBUG = debug
     init()
-    if 'DYNO' in os.environ:
-        print ('loading wkhtmltopdf path on heroku')
-        WKHTMLTOPDF_CMD = subprocess.Popen(
-            ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
-            stdout=subprocess.PIPE).communicate()[0].strip()
-    else:
-        print ('loading wkhtmltopdf path on localhost')
-        MYDIR = os.path.dirname(__file__)    
-        WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/static/executables/bin/", "wkhtmltopdf.exe")
+    # if 'DYNO' in os.environ:
+    #     print ('loading wkhtmltopdf path on heroku')
+    #     WKHTMLTOPDF_CMD = subprocess.Popen(
+    #         ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
+    #         stdout=subprocess.PIPE).communicate()[0].strip()
+    # else:
+    #     print ('loading wkhtmltopdf path on localhost')
+    #     MYDIR = os.path.dirname(__file__)    
+    #     WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/static/executables/bin/", "wkhtmltopdf.exe")
+    scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+    print("SCRIPT RUNNING AT -> [{}]".format(scriptDirectory))
     msg = str(msg)
     if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
         student_id = msg.upper()
