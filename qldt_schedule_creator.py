@@ -195,10 +195,8 @@ def heroku_generate_image(student_id, cookie_value):
     timestamp = int(time.time()*10000000)
     outfile =  student_id + '_' + str(timestamp) + '.jpg\''
     cmd += '\'/app/' + outfile
-    print('cmd -> [{}]'.format(cmd))
     os.system(cmd)
     # os.system('rm {}'.format(outfile))
-    os.system('ls')
     img_url = img_uploader.up(outfile[:-1])
     return img_url
 
@@ -237,7 +235,6 @@ def main(msg, debug):
     #     MYDIR = os.path.dirname(__file__)    
     #     WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/static/executables/bin/", "wkhtmltopdf.exe")
     scriptDirectory = os.path.dirname(os.path.realpath(__file__))
-    print("SCRIPT RUNNING AT -> [{}]".format(scriptDirectory))
     msg = str(msg)
     if re.match(student_id_pattern, msg) or re.match(teacher_id_pattern, msg):
         student_id = msg.upper()
