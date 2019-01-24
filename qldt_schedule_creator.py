@@ -183,14 +183,14 @@ def heroku_generate_image(student_id, cookie_value):
         'cookie':[['ASP.NET_SessionId', cookie_value]]
     }
     cmd = '/app/bin/wkhtmltoimage '
-    # for key in options:
-    #     if 'list' in str(type(options[key])):
-    #         l = options[key]
-    #         cmd += '--' + key + ' '
-    #         for pair in l:
-    #             cmd += pair[0] + ' ' + pair[1] + ' '
-    #     else:
-    #         cmd += '--' + str(key) + ' ' + str(options[key]) + ' '
+    for key in options:
+        if 'list' in str(type(options[key])):
+            l = options[key]
+            cmd += '--' + key + ' '
+            for pair in l:
+                cmd += pair[0] + ' ' + pair[1] + ' '
+        else:
+            cmd += '--' + str(key) + ' ' + str(options[key]) + ' '
     cmd += "'" + url + student_id + "' "
     timestamp = int(time.time()*10000000)
     outfile =  student_id + '_' + str(timestamp) + '.jpg\''
