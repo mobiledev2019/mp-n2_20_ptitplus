@@ -197,8 +197,8 @@ def heroku_generate_image(student_id, cookie_value):
     cmd += outfile
     print('cmd -> [{}]'.format(cmd))
     os.system(cmd)
-    img_url = img_uploader.up(outfile)
-    os.system('rm {}'.format(outfile))
+    # img_url = img_uploader.up(outfile)
+    # os.system('rm {}'.format(outfile))
     return img_url
 
 def get_tkb_page(student_id):
