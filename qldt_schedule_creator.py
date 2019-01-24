@@ -220,9 +220,9 @@ def get_tkb_page(student_id):
     if GENERATE_IMAGE == True: img_url = heroku_generate_image(student_id, r.cookies['ASP.NET_SessionId'])
     return rtn
 
-def main(msg, GENERATE_IMAGE):
+def main(msg, _GENERATE_IMAGE):
     global student_id, img_url, GENERATE_IMAGE
-    GENERATE_IMAGE = GENERATE_IMAGE
+    GENERATE_IMAGE = _GENERATE_IMAGE
     init()
     # if 'DYNO' in os.environ:
     #     print ('loading wkhtmltopdf path on heroku')
