@@ -171,6 +171,37 @@ def schedule_list_to_string(tkb):
     rtn += "*****[END]*****\nfrom Bách Văn Khoa's keyboard with love! ;*"
     return rtn
 
+def heroku_generate_image(student_id):
+    url = 'http://qldt.ptit.edu.vn?id='
+    options = {
+        'quality':100,
+        'width':2048,
+        'crop-h':580,
+        'crop-w':1200,
+        'crop-x':420,
+        'crop-y':250,
+        'cookie':[['ASP.NET_SessionId', 'ASP.NET_SessionId_value']]
+    }
+    cmd = './bin/wkhtmltoimage '
+    for key in options:
+        # print(type(options[key]))
+        # continue
+        if 'list' in str(type(options[key])):
+            l = options[key]
+            cmd += '--' + key + ' '
+            for pair in l:
+                cmd += pair[0] + ' ' + pair[1] + ' '
+        else:
+            cmd += '--' + str(key) + ' ' + str(options[key]) + ' '
+    cmd += url + student_id + ' '
+    timestamp = int(time.time()*10000000)
+    outfile = student_id + '_' + str(timestamp) + '.jpg'
+    cmd += outfile
+    os.system(cmd)
+    img_url = img_uploader.up(outfile)
+    os.system('rm {}'.format(outfile))
+    return img_url
+
 def get_tkb_page(student_id):
     """
     This function access website with student_id provided and return html source code
@@ -185,26 +216,10 @@ def get_tkb_page(student_id):
     # rtn = rtn[:head_tag_position] + inject_data + rtn[head_tag_position:]
     offline_schedule_file = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y') + '.html'
     with open(offline_schedule_file, 'w') as f: f.write(rtn)
-    options = {
-        'width':2048,
-        'crop-h':580,
-        'crop-w':1200,
-        'crop-x':420,
-        'crop-y':250,
-        'cookie':[
-            ('ASP.NET_SessionId', r.cookies['ASP.NET_SessionId'])
-        ]
-    }
-    # generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%d-%m-%Y')+'.jpg'
-    img_b64 = ''
-    if DEBUG:
-        try:
-            img_b64 = imgkit.from_url(tkb_url + student_id, False, options = options)
-        except:
-            traceback.print_exc()
-            pass
-        print("CALLING img_uploader(...), len = {}".format(len(img_b64)))
-        img_url = img_uploader.up(img_b64)
+    
+    # generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%H:%m%s %d-%m-%Y')+'.jpg'
+
+    img_url = heroku_generate_image(student_id)
     return rtn
 
 def main(msg, debug):
