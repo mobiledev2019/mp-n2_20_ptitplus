@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/api', methods=['GET'])
 def api():
     msg = request.args.get('last user freeform input')
-    rps_text, rps_url = qldt_schedule_creator.main(msg, debug = False)
+    rps_text, rps_url = qldt_schedule_creator.main(msg, GENERATE_IMAGE = True)
     print("IMAGE URL -> {}".format(rps_url))
     # j = {
     #     "messages":[
@@ -15,6 +15,31 @@ def api():
     j = {
         "messages":[
             {"text":rps_text},
+            {'attachment':{'type':'image','payload':{'url':rps_url}}}
+        ]
+    }
+    return jsonify(j)
+
+@app.route('/text_api', methods=['GET'])
+def api():
+    msg = request.args.get('last user freeform input')
+    rps_text, rps_url = qldt_schedule_creator.main(msg, GENERATE_IMAGE = False)
+    print("IMAGE URL -> {}".format(rps_url))
+    j = {
+        "messages":[
+            {"text":rps_text}
+        ]
+    }
+    return jsonify(j)
+
+@app.route('/image_api', methods=['GET'])
+def api():
+    msg = request.args.get('last user freeform input')
+    rps_text, rps_url = qldt_schedule_creator.main(msg, GENERATE_IMAGE = True)
+    print("IMAGE URL -> {}".format(rps_url))
+    j = {
+        "messages":[
+            # {"text":rps_text},
             {'attachment':{'type':'image','payload':{'url':rps_url}}}
         ]
     }

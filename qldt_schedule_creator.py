@@ -5,7 +5,7 @@ def init():
     """
     Initialize global variable and const
     """
-    global r, CAPTCHA_ELEMENT_ID, BROWSER_HEADERS, SUCCESS, DEBUG, FAILURE, home_url, tkb_url, subject_tooltip_pattern, student_id, student_name, student_id_pattern, teacher_id_pattern, date_of_year, img_url
+    global r, CAPTCHA_ELEMENT_ID, BROWSER_HEADERS, SUCCESS, GENERATE_IMAGE, FAILURE, home_url, tkb_url, subject_tooltip_pattern, student_id, student_name, student_id_pattern, teacher_id_pattern, date_of_year, img_url
     img_url = None
     student_id_pattern = r"[a-zA-Z]{1}[0-9]{2}[a-zA-Z]{4}[0-9]{3}"
     teacher_id_pattern = r"[a-zA-Z]{2}[0-9]{4}"
@@ -217,12 +217,12 @@ def get_tkb_page(student_id):
     
     # generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%H:%m%s %d-%m-%Y')+'.jpg'
 
-    img_url = heroku_generate_image(student_id, r.cookies['ASP.NET_SessionId'])
+    if GENERATE_IMAGE == True: img_url = heroku_generate_image(student_id, r.cookies['ASP.NET_SessionId'])
     return rtn
 
-def main(msg, debug):
-    global student_id, img_url, DEBUG
-    DEBUG = debug
+def main(msg, _GENERATE_IMAGE):
+    global student_id, img_url, GENERATE_IMAGE
+    GENERATE_IMAGE = _GENERATE_IMAGE
     init()
     # if 'DYNO' in os.environ:
     #     print ('loading wkhtmltopdf path on heroku')
