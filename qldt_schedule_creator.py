@@ -178,7 +178,7 @@ def heroku_generate_image(student_id, cookie_value):
         'width':2048,
         'crop-h':580,
         'crop-w':1200,
-        'crop-x':420,
+        'crop-x':410,
         'crop-y':250,
         'cookie':[['ASP.NET_SessionId', cookie_value]]
     }
@@ -199,7 +199,7 @@ def heroku_generate_image(student_id, cookie_value):
     os.system(cmd)
     # os.system('rm {}'.format(outfile))
     os.system('ls')
-    img_url = img_uploader.up("'"+outfile)
+    img_url = img_uploader.up(outfile[:-1])
     return img_url
 
 def get_tkb_page(student_id):
