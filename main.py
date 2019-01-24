@@ -21,7 +21,7 @@ def api():
     return jsonify(j)
 
 @app.route('/text_api', methods=['GET'])
-def api():
+def text_api():
     msg = request.args.get('last user freeform input')
     rps_text, rps_url = qldt_schedule_creator.main(msg, GENERATE_IMAGE = False)
     print("IMAGE URL -> {}".format(rps_url))
@@ -33,7 +33,7 @@ def api():
     return jsonify(j)
 
 @app.route('/image_api', methods=['GET'])
-def api():
+def image_api():
     msg = request.args.get('last user freeform input')
     rps_text, rps_url = qldt_schedule_creator.main(msg, GENERATE_IMAGE = True)
     print("IMAGE URL -> {}".format(rps_url))
