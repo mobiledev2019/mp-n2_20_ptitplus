@@ -151,9 +151,9 @@ def get_daily_schedule_from_server_response(tkb_page_html_code):
         # print("student name -> {}".format(student_name))
     else:
         student_name = "SERVER KHÔNG TRẢ VỀ USERNAME NÀO"
+    day_of_week, date_of_year = get_current_day_of_week()
     for subject in subjects:
         subject = subject.split(',')
-        day_of_week, date_of_year = get_current_day_of_week()
         # print("lay tkb voi day_of_week = {}, date_of_year = {}".format(day_of_week, date_of_year))
         if day_of_week_str_to_int(subject[3].lower()) == day_of_week:
             sub = [subject[2], subject[1], subject[5], subject[6], subject[8]]
