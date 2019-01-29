@@ -7,6 +7,7 @@ def init():
     """
     global r, CAPTCHA_ELEMENT_ID, BROWSER_HEADERS, SUCCESS, GENERATE_IMAGE, FAILURE, home_url, tkb_url, subject_tooltip_pattern, student_id, student_name, student_id_pattern, teacher_id_pattern, date_of_year, img_url
     img_url = None
+    date_of_year = '?'
     student_id_pattern = r"[a-zA-Z]{1}[0-9]{2}[a-zA-Z]{4}[0-9]{3}"
     teacher_id_pattern = r"[a-zA-Z]{2}[0-9]{4}"
     subject_tooltip_pattern = r"<td onmouseover=\"ddrivetip\((.*),''.*>"
