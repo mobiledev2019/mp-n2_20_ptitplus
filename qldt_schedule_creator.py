@@ -435,6 +435,6 @@ def test1():
 		print(rps)
 
 if __name__ == '__main__':
-	rps = get_point_report('b15dccn318', 'bacxiucotdua')
-	print(rps)
-	# print(main('b15dccn318', 0))
+	# rps = get_point_report('b15dccn318', 'bacxiucotdua')
+	# print(rps)
+	print(main('b15dccn318', 0))
