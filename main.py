@@ -60,7 +60,7 @@ def point_report():
     username = request.args.get('username')
     password = request.args.get('password')
     rps_text = qldt_schedule_creator.get_point_report(username, password)
-    return jsonify(rps_text)
+    return rps_text
 
 @app.route('/', methods=['GET'])
 def index():
