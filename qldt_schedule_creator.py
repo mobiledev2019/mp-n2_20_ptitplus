@@ -400,7 +400,7 @@ def get_tkb_page(student_id):
 	
 	# generated_img = student_id + '_weekly_' + datetime.datetime.now().strftime('%H:%m%s %d-%m-%Y')+'.jpg'
 
-	if GENERATE_IMAGE == True: img_url = heroku_generate_image(student_id, r.cookies['ASP.NET_SessionId'])
+	
 	return rtn
 
 def main(msg, _GENERATE_IMAGE):
@@ -417,6 +417,7 @@ def main(msg, _GENERATE_IMAGE):
 	if init_home_page() == SUCCESS:
 		tkb = get_daily_schedule_from_server_response(get_access_to_target_week(student_id))
 		rps = schedule_list_to_string(tkb)
+	if GENERATE_IMAGE == True: img_url = heroku_generate_image(student_id, r.cookies['ASP.NET_SessionId'])
 	return rps, img_url
 
 def get_point_report(username, password):
