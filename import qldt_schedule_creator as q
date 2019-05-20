@@ -1,0 +1,6 @@
+import qldt_schedule_creator as q
+
+def main():
+	q.test()
+
+

@@ -1,0 +1,914 @@
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head><link id="ctl00_favicon" rel="shortcut icon" type="image/x-icon" href="Images/Edusoft.gif" />
+    <script src="JS/jquery-2.2.1.js" type="text/javascript"></script>
+    <script src="JS/dialog.js" type="text/javascript"></script>
+    <script src="JS/checkdate.js" type="text/javascript"></script>
+    <title>
+	Cổng Thông Tin Đào Tạo-Cơ Sở Miền Bắc (version ktuyen: 2019.01.16)
+</title>
+    <script type="text/javascript" language="javascript">
+        function ShowMess()
+        {
+            var url = location.href;
+            if (url.indexOf("err=serveroverload", 0) > 0)
+                alert('Server quá tải, vui lòng đăng nhập lại!');
+            else if (url.indexOf("err=sessionreuse", 0) > 0)
+                alert('Vui lòng tắt và mở lại trình duyệt!');
+        }
+    </script>   
+<link href="/WebResource.axd?d=We1xxkxE0WKe855rlV518V6bZ9tqOgwMjVh1QYXUtjuuNMdnSeJdlQG-nMmCrt9Kbr-Ba-9bAZEft_pYKFNSG3cq_r4w-80Wpyxb7vHmtI1i4oZtaD_MUwmDlvekWnxbQhD2cEDX9QyMaFi3XCVsPcQFt5sYh1nRQjBRmT872gB0DkFf0&amp;t=636854981340000000" rel="stylesheet" type="text/css" /><link href="App_Themes/Standard/Standard.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/StyleSheet.css" type="text/css" rel="stylesheet" /></head>
+
+<body background="App_Themes/Standard/Images/background.png" onload="ShowMess()">
+    <form name="aspnetForm" method="post" action="default.aspx?page=xemdiemthi" id="aspnetForm" enctype="multipart/form-data">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+            function ShowMsgBox(type,message,height,width)
+            {
+                if(width == undefined)
+                    width = '340';
+                if(height == undefined)
+                    height = '60';
+                var ajaxModal = $get('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_ajaxModal');
+                var headerText = $get('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_lblPopupHeader');
+                $get('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_lblMessageDisplay').innerHTML = message;
+                $get('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_panelMessageBox').style.width = width+'px';        
+                $get('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_panelBody').style.height = height+'px';
+                $get('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_ctl03').style.width = (parseInt(width) - 70) +'px';  
+                $get('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_lblMessageDisplay').style.width = (parseInt(width) - 80) +'px'; 
+                var imgType = $get('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_ctl02');
+                if(type.toLowerCase() == 'success'){
+                    headerText.innerHTML = 'Successful';
+                    imgType.src = '/WebResource.axd?d=ueZNHdikR8SawKpVsjOg3p78kad0RWg9XgKNm4ZmBF8LjS8vUUsSkQvWm-F8moeZfIGbyoVnbi4VQxECZUYVBi9EqabH-NBR5qgXb02LF73Abu_VbGyhfEdNsWgkvwdeUtfL8Ih6qxaKkB7xCFpTkopjr_DBzShhi6IW1eqLhBxnZdxP0&t=636854981340000000';
+                }
+                else if(type.toLowerCase() == 'error'){
+                     headerText.innerHTML = 'Error';
+                     imgType.src = '/WebResource.axd?d=wd1HEF4UJoQCwqMCmgH-ViDZTqcNoaCmTwEKb2TZfvMbOx3tSeIaZc3PgWbKWThlWK9aR2d2NqoI_1zD_qxQsujodrEtiyNnUkgjGcsP5Nu5pBD8bA1M2saTx8JTsoG6pMHtIfZrxptkIwtlCsYHvG5W5pLQMdtM_MuuxXuG0puxog8L0&t=636854981340000000';
+                }
+                else if(type.toLowerCase() == 'warning'){
+                     headerText.innerHTML = 'Warning';
+                     imgType.src = '/WebResource.axd?d=OntmoJqe7pjqeIF85w6t-F1EchMBKlPp4PLJvIHeDWl0sVleSdvs3lbPsErdiq9KYkRDkcwKy9g8E9CNPYSaFm3Va2-yBH6zZrsrFkEnXaKPQd5JQpioiavkbIzxAHJ4ykeaTGyGGLV0TONRLfDfPTEKFufP2mmMsEE68wjhe8YxaZa40&t=636854981340000000';
+                }
+                else{
+                     headerText.innerHTML = 'Information';
+                     imgType.src = '/WebResource.axd?d=OntmoJqe7pjqeIF85w6t-F1EchMBKlPp4PLJvIHeDWl0sVleSdvs3lbPsErdiq9KYkRDkcwKy9g8E9CNPYSaFm3Va2-yBH6zZrsrFkEnXaKPQd5JQpioiavkbIzxAHJ4ykeaTGyGGLV0TONRLfDfPTEKFufP2mmMsEE68wjhe8YxaZa40&t=636854981340000000';
+                }
+               
+                $find('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_ajaxModal').show();
+                $get('ctl00_ContentPlaceHolder1_ctl00_MessageBox1_btnOk').focus();
+            }
+            //]]>
+</script>
+
+<script type="text/javascript" src="/ajaxpro/prototype.ashx"></script>
+<script type="text/javascript" src="/ajaxpro/core.ashx"></script>
+<script type="text/javascript" src="/ajaxpro/converter.ashx"></script>
+<script type="text/javascript" src="/ajaxpro/EduSoft.Web.UC.Logout,EduSoft.Web.ashx"></script>
+<script type="text/javascript" src="/ajaxpro/EduSoft.Web.UC.Footer,EduSoft.Web.ashx"></script>
+
+<script src="/ScriptResource.axd?d=cQEGyShy-dS7kws6qYG_sqi3E-kmwZRs69oWT4rAxeWs_376QBIpjdyOE0wCCh7EreRkb8gsolMxTRChg7v_DSQ7csjEGasGVgtCZaC0EtOQ0EijMf6xosmx6uKEyFDcWi6B3gFaQk9LiI0ixtq_Rw6OTIiFLQm6fE2tm6eI_0ZDDZJF0&amp;t=fffffffffa2fd9a5" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="/ScriptResource.axd?d=LwkciltALtBi1932T3DRtmNQcuTetMs3X2RkE29VbENYDuJPvRFItZoFOw_4wSZh8Unq5F9xafiFmKZu8p2jXaUr3ENFPb7MBJJeHUMooRiba_CoiTaaJC686AMu7sWPFV1aCdYvSYwHGhduj70RZ1Mt0zc1&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=xDY5DWuTX0I6Z-X1onZpvlDt7MfXp89tAN-lPZrgulW17JOp7vyIYUZVvLS27qW9lW-88SDBEK-rriJxpjUFZXfyHChqFLsiXIQOuUFoWfjbUL16ofzWo1m93V8QMm9fVzvayKcRmS7nYmfqwxAO3Cg5yNE1&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=LuyCDmnZbYjV3AF9ywWfruTuekenXfN4eFdkLOLTcPOSvfSXkNg8hpYzu6vdfFO9iND0OCs_oHVe5CuuYrrPty0h9FxdnvxA_9nBZZOWv-Te8l1j9p65fmE3qjmBd2dpNLo7s1MeWX4rBI9DjqTdzzP4SC0A3jsLDNAelLEwDXD8eziF0&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=QGXu0q9_1MR0pB4bBBhZl0cgnCe4NBGNLAgcHdCQ1i-j2NnqU8tK_YniU77XcKsnGEgp60KxyWyS545Onz81RhjrcTRBJJmHaP3c6Xs_ouuAdm3SvtjGkMBw5h7QNPu-1AWQpZ0pt-n-AKAP5-we06J1TTM1&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=5UEqi4DckobNvUBMF2AbGwWPIzH_LG-hfg4AAGPh3g3H5tJ80r46TjphvIZFz6GyYEVADxog651bGRjCi2b4dpN_meeH1OaVNygNhv5qMRex4v7uiSK5Di8oYmAKC5tBScXjGYlRqeOtv87qCV9_GlxGT841&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=xn0ln7TQKH4-yheiTPreipmnbG72qmiMpHxeLN8yHY_xTPC59fvUCyz6Mdm_rU3SN-0b4X3r6NaMg9-Vs1i5NO4yjY7xIuFG-ex-3cIeVhMox91JIN8Pp2vrW0mFbHVvUUhHnAh2AX5vje6xgK2HHhsAShnf4Nw1vOX8j7crputFhxmr0&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=gXcI8nYDPCqjxOeVj2fWFe-elrWD54vpy7Pk8lCZRrqDikm9zLdHH-eZ01KSlt7MrasyhetlXviBvYQBNPEOoaN4UeAvJyccbrEQ4A9FOKlCEFFNsXUIc_Qlk0F8GYw0NIFXR51brFaqGzn-VL3_AeUk7I8swZlN73zLzzIgcTEM1fMQ0&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=6UBKjjNDEfyiEPrGP3QqEE1tOtZ2Umy1h1YVFdXDFn2h4vRblat_HDj-WP8hwVgzZ20uCDI6669Vfus_-yHhDwWewfS-xVra8b0h_pj-FZa1IAONZzZhjnw-gRshtjVJ7fBUgUQJA-VTHA3fwT-5l0AhW5TQDzt6IqSSTxjGbcELQQYe0&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=FpTWHZW_NvVLWzbAeOq876OXidpxC6yrMajXrIJg-aEiYtf0oG7K8FkfF-WWHjup832w2H0co74rg1LViPxgcakH3FhKet-XQ2t_CD7Z5HO7B_ncObBe-M2rAhshyFXPW3xDwieqeo3_m9Vvd9Yl_msyLmPUVwMdq4hFP0pNhUiUp-w50&amp;t=2e070b50" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
+    <div align="center" >
+        <div class="base">
+        
+        <table><tr><td>
+             
+<div style="background-image:url(Images/bg_heading_thongbao.png)">
+        <table width="1000px"><tr><td height="20px" style="padding-left:50px" valign="bottom" align="right">
+              
+
+<script language="javascript" type="text/javascript">
+ 
+    function changeLanguage_click(obj)
+    {        
+        EduSoft.Web.UC.Logout.ChangeLanguage(obj,changeLanguage_callback);
+    }
+    function changeLanguage_callback()
+    {
+        self.location=window.location;
+    }
+    function selectFont_change()
+    {       
+        var selectmenu=document.getElementById("selectFont");
+        var chosenOption=selectmenu.options[selectmenu.selectedIndex];
+        var font=chosenOption.value;
+        EduSoft.Web.UC.Logout.ChangeFont(font,ChangeFont_callback);
+    }
+    function ChangeFont_callback()
+    {
+        //self.location=window.location;
+    }
+
+    function ConfirmChuaLuu(obj) {
+
+        alert(obj);
+            self.location = "default.aspx?page=dkmonhoc";
+        
+    }
+</script>
+
+<div id="ctl00_Header1_ucLogout_dLog" class="logout" style="text-align: right; margin-bottom:0px">
+
+    <img src="App_Themes/Standard/Images/US.gif" alt="English" onclick="changeLanguage_click('_us')"
+        id="imgUS"  title ="English"/>
+    <img src="App_Themes/Standard/Images/VI.gif" alt="Vietnamese" onclick="changeLanguage_click('_vi')"
+        id="imgVi" title="Vietnamese"/>
+<span id="ctl00_Header1_ucLogout_lblNguoiDung" class="Label"><b><font color="MistyRose">Chào bạn  Nguyễn Hoàng Long (B15DCCN318)</font></b></span>&nbsp;<a id="ctl00_Header1_ucLogout_lbtnThongBao" href="javascript:__doPostBack('ctl00$Header1$ucLogout$lbtnThongBao','')" style="font-family: 'Tahoma', Times, serif"><i><font color="MistyRose" size="2">Xem thông báo</font></i></a><span id="ctl00_Header1_ucLogout_lblXiet1" class="Label"><font color="MistyRose"> | </font></span>
+    <a id="ctl00_Header1_ucLogout_lbtnChangePass" href="javascript:__doPostBack('ctl00$Header1$ucLogout$lbtnChangePass','')" style="font-family: 'Tahoma', Times, serif"><b><font color="MistyRose" size="2">Thay đổi mật khẩu</font></b></a>
+    <span id="ctl00_Header1_ucLogout_lblXiet2" class="Label"><font color="MistyRose"> | </font></span>
+    <a id="ctl00_Header1_ucLogout_lbtnLogOut" href="javascript:__doPostBack('ctl00$Header1$ucLogout$lbtnLogOut','')" style="font-family: 'Tahoma', Times, serif"><b><font color="MistyRose" size="2">Thoát</font></b></a>
+    &nbsp;<select id="selectFont" style="font-size: 11px; width: 100px; color: #000080;"
+        onchange="selectFont_change()">
+        <option value="uni">-------Font-------</option>
+        <option value="uni" selected>Font Unicode</option>
+        <option value="abc" >Font ABC</option>
+        <option value="vni" >Font Vni</option>
+        <option value="not" >Text không
+            dấu</option>
+    </select>
+</div>
+
+            </td></tr></table>
+</div>
+
+             
+
+<style type="text/css">
+    .styleApplication {
+        font-size: 26;
+        font-weight: bold;
+    }
+</style>
+
+<div class="left-menu">
+    <div class="right-menu">
+
+        <div class="main-menu" style="height: 110px">
+
+            <div id="ctl00_menu_pnlGioithieu" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=gioithieu">
+                        <span id="ctl00_menu_lblTrangChu" class="Label">TRANG CHỦ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            <div id="ctl00_menu_dkmonhoc" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=dkmonhoc">
+                        <span id="ctl00_menu_lblDangKyMonHoc" class="Label">ĐĂNG KÝ MÔN HỌC</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+            
+            <div id="ctl00_menu_xemlichthi" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemlichthi">
+                        <span id="ctl00_menu_lblXemLichThi" class="Label">XEM LỊCH THI</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            <div id="ctl00_menu_xemlichthilai" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemlichthilai">
+                        <span id="ctl00_menu_lblXemLichThiLai" class="Label">XEM LỊCH THI LẠI</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+            
+
+            <div id="ctl00_menu_thoikhoabieu" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=thoikhoabieu">
+                        <span id="ctl00_menu_lblThoiKhoaBieu" class="Label">XEM TKB</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            <div id="ctl00_menu_xemhocphi" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemhocphi">
+                        <span id="ctl00_menu_lblXemHocPhi" class="Label">XEM HỌC PHÍ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+            <div id="ctl00_menu_xemdiemthi" class="over-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemdiemthi">
+                        <span id="ctl00_menu_lblXemDiem" class="Label">XEM ĐIỂM</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+             
+
+              <div id="ctl00_menu_pnlXemCTDTKhoi" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=ctdtkhoisv">
+                        <span id="ctl00_menu_lblXemCTDTKhoiSV" class="Label">XEM CTĐT</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            <div id="ctl00_menu_pnlXemMonTienQuyet" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemmontienquyet">
+                        <span id="ctl00_menu_lblXemMonTQ" class="Label">XEM MÔN TQ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            
+
+            <div id="ctl00_menu_thaydoittcn" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=thaydoittcn">
+                        <span id="ctl00_menu_lblThayDoiTTCN" class="Label">SỬA TT CÁ NHÂN</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+             <div id="ctl00_menu_ykiensinhvien" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=ykiensinhvien">
+                        <span id="ctl00_menu_lblykiensinhvien" class="Label">GÓP Ý KIẾN</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+            
+
+           
+
+            
+
+             
+
+
+            
+
+            
+
+            
+            
+
+
+            
+
+
+            
+
+            
+
+            
+
+            
+
+            
+
+          
+
+            
+
+            
+
+            
+
+            
+
+            
+            
+            
+            
+
+            
+
+            
+            
+            
+            <div id="ctl00_menu_pnlHDSD" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href='HDDKMH.htm'>
+                        <span id="ctl00_menu_Label8" class="Label">HƯỚNG DẪN ĐĂNG KÝ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+            
+            
+            
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+            
+
+            
+
+              
+
+             
+
+             
+
+            
+
+            
+
+             
+          
+            
+
+            
+
+        </div>
+
+    </div>
+
+</div>
+
+             </td></tr><tr><td height="500px" valign="top">
+                
+
+<span id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1"><a id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_lbTarget" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$ctl00$MessageBox1$lbTarget','')"></a><div id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_panelMessageBox" class="confirmBox" style="display:none">
+	<div id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_panelHeader" class="header" style="background: url(Images/header.png);repeat-x 0px -200px;">
+		<div class="msg">
+			<span id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_lblPopupHeader" class="Label" style="color:White;font-family:Arial Black;"></span>
+		</div><input type="image" name="ctl00$ContentPlaceHolder1$ctl00$MessageBox1$imgCloseButton" id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_imgCloseButton" class="close" src="/WebResource.axd?d=liERUmgzF99J6oTtMmPH4dMGrEZGapo2bZ_e0ZyNvfiiaewYPM80S8rleIkN6BpsYhWm2m1CQjf6lprtzuL-qSiraJvXLbFsYH8EPZXX09HzJXMkK-o_K5tJ7FggYGa8iz4Yhq_pQlC2fPG-IbVCJZ4Mo5V0Wf2L8j6qf1iP6hPLuklI0&amp;t=636854981340000000" border="0" />
+	</div><div id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_panelBody" class="body" style="background-color:#E1E5F0;">
+		<div class="body-left" style="background-color:#E1E5F0;">
+			<img id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_ctl02" src="" border="0" />
+		</div><div id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_ctl03" class="body-right" style="background-color:#E1E5F0;">
+			<span id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_lblMessageDisplay" class="Label" style="font-family:Tahoma;color:#263F75;"></span>
+		</div>
+	</div><div id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_panelFooter" class="footer" style="background-color:#E1E5F0;">
+		<div class="right" style="background-color:#E1E5F0;">
+			<input type="image" name="ctl00$ContentPlaceHolder1$ctl00$MessageBox1$btnOk" id="ctl00_ContentPlaceHolder1_ctl00_MessageBox1_btnOk" class="button_small_active" src="/WebResource.axd?d=VXD7jC1x8Of0zAABjPR3m45CZIwQvBEGsZw7XL1nyUARPuX_k-53ZcNJasgXWp6ts3tKBHw6ZyZygun9rkQ6wwJp1BLg3PflnELb7DZkPKu9c9Sp14d1oMCaswKsL2EiGVR_Bb14anIaHCl1cDtGPWIjnMRnyIG9DvNfUxvZjd_8E8Zn0&amp;t=636854981340000000" border="0" />
+		</div>
+	</div>
+</div></span>
+
+<style type="text/css">
+
+     .style1
+     {
+         font-size: large;
+         font-weight: bold;
+     }
+                                                                              .auto-style1 {
+                                                                                  font-weight: bold;
+                                                                              }
+ </style>
+</script>
+
+<div class="infor-member" align="center" id="id_form"> 
+    <div class="top"></div>
+    <div class="center">
+        <table cellpadding="0" cellspacing="1">
+            <tr >
+                <td style="text-align: left; width:150px">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_MaSinhVien" class="Label">Mã sinh viên</span>
+                </td>
+                <td class="Left" style="text-align: left"><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblMaSinhVien" class="Label"><b>B15DCCN318</b></span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left"><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_TenSinhVien" class="Label">Tên sinh viên</span>
+                </td>
+                <td style="text-align: left"><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblTenSinhVien" class="Label"><b>Nguyễn Hoàng Long</b></span></td>
+            </tr> 
+            
+            <tr>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_Label2" class="Label" style="text-align: center">Phái</span>
+                </td>
+                <td style="text-align: left"> <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblPhai" class="Label">Nam</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_NgaySinh" class="Label" style="text-align: center">NgaySinh</span>
+                </td>
+                <td style="text-align: left"> <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblNgaySinh" class="Label">25/08/1996</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_NoiSinh" class="Label" style="text-align: center">NoiSinh</span>
+                </td>
+                <td style="text-align: left"> <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblNoiSinh" class="Label">Bắc Ninh</span></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_Lop" class="Label" style="text-align: center">Lớp</span>
+                </td>
+                <td style="text-align: left"> <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblLop" class="Label">D15CNPM5( )</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left" >
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_Nganh" class="Label">Ngành</span>
+                </td>
+                <td class="style1" style="text-align: left"><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lbNganh" class="Label">Công nghệ phần mềm</span></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left" >
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_Khoa" class="Label">Khoa</span>
+                </td>
+                <td class="style1" style="text-align: left"><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblKhoa" class="Label">Công nghệ thông tin</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left" >
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_HeDaoTao" class="Label">Hệ đào tạo</span>
+                </td><td style="text-align: left" >
+                <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblHeDaoTao" class="Label">Đại học chính quy</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_Khoahoc" class="Label">Khóa học</span>
+                </td>
+                <td style="text-align: left" ><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblKhoaHoc" class="Label"><b>2015-2020</b></span></td>
+            </tr>
+             <tr>
+                <td style="text-align: left">
+                    <span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_CVHT" class="Label">Cố vấn học tập</span>
+                </td>
+                <td style="text-align: left" ><span id="ctl00_ContentPlaceHolder1_ctl00_ucThongTinSV_lblCVHT" class="Label"><b></b></span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="bottom">
+    </div>
+</div>
+<span id="ctl00_ContentPlaceHolder1_ctl00_lblThongbao" class="Label"></span>
+
+<div id="ctl00_ContentPlaceHolder1_ctl00_pnlXemDiemChung">
+	
+<center>
+<a id="ctl00_ContentPlaceHolder1_ctl00_lnkChangeview2" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$ctl00$lnkChangeview2','')"><b><font color="Red">Học kỳ 2 Năm học 2018</font></b></a>
+<br />
+<span id="ctl00_ContentPlaceHolder1_ctl00_lblChonHK" class="Label">Nhập học kỳ xem điểm thi (vd 20061):</span> &nbsp;&nbsp; <input name="ctl00$ContentPlaceHolder1$ctl00$txtChonHK" type="text" id="ctl00_ContentPlaceHolder1_ctl00_txtChonHK" class="TextBox" /> 
+    <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnChonHK" value="Xem" id="ctl00_ContentPlaceHolder1_ctl00_btnChonHK" class="DefaultButton" />
+</center>
+
+<table>
+<tr>
+<td align="left"><span id="ctl00_ContentPlaceHolder1_ctl00_Label1" class="Label"></span></td>
+</tr>
+    <tr>
+        <td>
+            <div id="ctl00_ContentPlaceHolder1_ctl00_div1" class="grid_scroll" style=" border-width: thin; height:800px; border-right-style: inset; border-bottom-style: inset; border-left-style: inset;">
+                <table class="view-table" cellspacing="0" cellpadding="0" bordercolor="Black" border="0">
+		<tr class="title-diem">
+			<td title="Số thứ tự" align="center" width="16"><span class="Label" style="display:inline-block;">STT</span></td><td title="Mã môn học" align="center" width="60"><span class="Label" style="display:inline-block;">Mã Môn</span></td><td title="Tên môn học" align="left" width="250"><span class="Label" style="display:inline-block;">Tên Môn</span></td><td title="Số tín chỉ" align="center" width="20"><span class="Label" style="display:inline-block;">TC</span></td><td title="Phần trăm chuyên cần" align="center" width="20"><span class="Label" style="display:inline-block;">% CC</span></td><td title="Phần trăm kiểm tra" align="center" width="20"><span class="Label" style="display:inline-block;">% KT</span></td><td title="Phần trăm thí nghiệm thực hành" align="center" width="20"><span class="Label" style="display:inline-block;">% TH</span></td><td title="Phần trăm bài tập" align="center" width="20"><span class="Label" style="display:inline-block;">% BT</span></td><td title="Phần trăm thi" align="center" width="35"><span class="Label" style="display:inline-block;">% Thi</span></td><td title="Điểm chuyên cần" align="center" width="40"><span class="Label" style="display:inline-block;">Điểm CC</span></td><td title=" Điểm kiểm tra" align="center" width="40"><span class="Label" style="display:inline-block;">Điểm KT</span></td><td title="Điểm thí nghiệm thực hành" align="center" width="40"><span class="Label" style="display:inline-block;">Điểm TH</span></td><td title="Điểm bài tập" align="center" width="40"><span class="Label" style="display:inline-block;">Điểm BT</span></td><td title=" điểm thi lần 1" align="center"><span class="Label">Thi L1</span></td><td title=" điểm thi lần 2" align="center"><span class="Label">Thi L2</span></td><td title=" điểm tổng kết (hệ 10/100)" align="center"><span class="Label">TK(10)</span></td><td title=" điểm tổng kết (điểm chữ)" align="center"><span class="Label">TK(CH)</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label"> Điểm bảo lưu </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">1</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1141</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tiếng anh A11</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="10.0" align="center"><span class="Label">10.0</span></td><td title="A+" align="center"><span class="Label">A+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1144</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tiếng anh A22</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">4</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="10.0" align="center"><span class="Label">10.0</span></td><td title="A+" align="center"><span class="Label">A+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1143</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tiếng anh A21</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="10.0" align="center"><span class="Label">10.0</span></td><td title="A+" align="center"><span class="Label">A+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">4</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1142</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tiếng anh A12</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">4</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="10.0" align="center"><span class="Label">10.0</span></td><td title="A+" align="center"><span class="Label">A+</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Học kỳ 1 - Năm học 2015-2016</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">5</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1111</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Những nguyên lý cơ bản của Chủ nghĩa Mác Lênin 1</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">30</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="4.0" align="center"><span class="Label">4.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.4" align="center"><span class="Label">5.4</span></td><td title="D+" align="center"><span class="Label">D+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">6</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1154</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tin học cơ sở 1</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="3.0" align="center"><span class="Label">3.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="4.7" align="center"><span class="Label">4.7</span></td><td title="D" align="center"><span class="Label">D</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">7</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1201</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Đại số</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td title="3.5" align="center"><span class="Label">3.5</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="4.6" align="center"><span class="Label">4.6</span></td><td title="D" align="center"><span class="Label">D</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">8</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1203</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Giải tích 1</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td title="5.0" align="center"><span class="Label">5.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.9" align="center"><span class="Label">5.9</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">9</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1106</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Giáo dục thể chất 1</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">30</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="5.0" align="center"><span class="Label">5.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.7" align="center"><span class="Label">5.7</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">5.17</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">1.40</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy:</span><span class="Label">7.99</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">2.92</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ đạt:</span><span class="Label">10</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ tích lũy:</span><span class="Label">24</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Học kỳ 2 - Năm học 2015-2016</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1204</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Giải tích 2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">4.0</span></td><td title="4.0" align="center"><span class="Label">4.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="4.5" align="center"><span class="Label">4.5</span></td><td title="D" align="center"><span class="Label">D</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">11</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1224</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Vật lý 1 và thí nghiệm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">4</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="1.0" align="center"><span class="Label">1.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="2.9" align="center"><span class="Label">2.9</span></td><td title="F" align="center"><span class="Label">F</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">12</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1107</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Giáo dục thể chất 2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">30</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="2.0" align="center"><span class="Label">2.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="4.2" align="center"><span class="Label">4.2</span></td><td title="D" align="center"><span class="Label">D</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">13</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1112</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Những nguyên lý cơ bản của Chủ nghĩa Mác Lênin 2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">30</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="8.0" align="center"><span class="Label">8.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="8.2" align="center"><span class="Label">8.2</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">14</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1226</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Xác suất thống kê</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td title="5.0" align="center"><span class="Label">5.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.6" align="center"><span class="Label">5.6</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">15</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1155</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tin học cơ sở 2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.5</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="9.0" align="center"><span class="Label">9.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="8.2" align="center"><span class="Label">8.2</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">16</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1141</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tiếng anh A11</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="6.6" align="center"><span class="Label">6.6</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="6.6" align="center"><span class="Label">6.6</span></td><td title="C+" align="center"><span class="Label">C+</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">5.52</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">1.75</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy:</span><span class="Label">7.57</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">2.78</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ đạt:</span><span class="Label">10</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ tích lũy:</span><span class="Label">34</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Học kỳ 1 - Năm học 2016-2017</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">17</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1358</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Toán rời rạc 1</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">4.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td title="6.0" align="center"><span class="Label">6.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="6.3" align="center"><span class="Label">6.3</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">18</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1122</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tư tưởng Hồ Chí Minh</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">30</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="1.0" align="center"><span class="Label">1.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="4.4" align="center"><span class="Label">4.4</span></td><td title="D" align="center"><span class="Label">D</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">19</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1142</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tiếng anh A12</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">4</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="7.1" align="center"><span class="Label">7.1</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="7.1" align="center"><span class="Label">7.1</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1227</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Vật lý 3 và thí nghiệm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">4</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="4.0" align="center"><span class="Label">4.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.4" align="center"><span class="Label">5.4</span></td><td title="D+" align="center"><span class="Label">D+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">21</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">ELE1433</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Kỹ thuật số</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="2.5" align="center"><span class="Label">2.5</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="4.1" align="center"><span class="Label">4.1</span></td><td title="D" align="center"><span class="Label">D</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">22</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1339</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Ngôn ngữ lập trình C++</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td title="4.0" align="center"><span class="Label">4.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.4" align="center"><span class="Label">5.4</span></td><td title="D+" align="center"><span class="Label">D+</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">5.26</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">1.46</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy:</span><span class="Label">6.90</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">2.40</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ đạt:</span><span class="Label">14</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ tích lũy:</span><span class="Label">48</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Học kỳ 2 - Năm học 2016-2017</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">23</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">ELE1330</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Xử lý tín hiệu số</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.5</span></td><td title="1.0" align="center"><span class="Label">1.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="3.7" align="center"><span class="Label">3.7</span></td><td title="F" align="center"><span class="Label">F</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">24</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1359</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Toán rời rạc 2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td title="5.0" align="center"><span class="Label">5.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="6.1" align="center"><span class="Label">6.1</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">25</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">ELE1319</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Lý thuyết thông tin</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td title="1.0" align="center"><span class="Label">1.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="2.4" align="center"><span class="Label">2.4</span></td><td title="F" align="center"><span class="Label">F</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">26</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1102</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Đường lối cách mạng của Đảng cộng sản Việt Nam</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">30</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="7.0" align="center"><span class="Label">7.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="7.8" align="center"><span class="Label">7.8</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">27</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1143</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tiếng anh A21</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="7.6" align="center"><span class="Label">7.6</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="7.6" align="center"><span class="Label">7.6</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">28</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1306</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Cấu trúc dữ liệu và giải thuật</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td title="6.0" align="center"><span class="Label">6.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.6" align="center"><span class="Label">5.6</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">29</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1323</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Kiến trúc máy tính</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td title="10.0" align="center"><span class="Label">10.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="8.3" align="center"><span class="Label">8.3</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">30</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">SKD1103</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Kỹ năng tạo lập Văn bản</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">1</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td title="7.0" align="center"><span class="Label">7.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="7.4" align="center"><span class="Label">7.4</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">5.61</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">1.75</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy:</span><span class="Label">6.88</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">2.42</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ đạt:</span><span class="Label">11</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ tích lũy:</span><span class="Label">59</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Học kỳ 3 - Năm học 2016-2017</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">31</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1224</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Vật lý 1 và thí nghiệm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">4</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.5</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="5.0" align="center"><span class="Label">5.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="6.4" align="center"><span class="Label">6.4</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">6.40</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">2.00</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy:</span><span class="Label">6.85</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">2.40</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ đạt:</span><span class="Label">4</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ tích lũy:</span><span class="Label">63</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Học kỳ 1 - Năm học 2017-2018</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">32</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1332</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Lập trình hướng đối tượng</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="6.0" align="center"><span class="Label">6.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="7.1" align="center"><span class="Label">7.1</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">33</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1313</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Cơ sở dữ liệu</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td title="6.0" align="center"><span class="Label">6.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="7.1" align="center"><span class="Label">7.1</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">34</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1330</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Kỹ thuật vi xử lý</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td title="4.5" align="center"><span class="Label">4.5</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="6.6" align="center"><span class="Label">6.6</span></td><td title="C+" align="center"><span class="Label">C+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">35</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">SKD1101</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Kỹ năng thuyết trình</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">1</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td title="7.0" align="center"><span class="Label">7.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="6.9" align="center"><span class="Label">6.9</span></td><td title="C+" align="center"><span class="Label">C+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">36</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">SKD1108</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Phương pháp luận nghiên cứu khoa học</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td title="6.0" align="center"><span class="Label">6.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="6.2" align="center"><span class="Label">6.2</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">37</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">BAS1144</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Tiếng anh A22</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">4</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="6.1" align="center"><span class="Label">6.1</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="6.1" align="center"><span class="Label">6.1</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">38</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1319</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Hệ điều hành</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="6.0" align="center"><span class="Label">6.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="6.8" align="center"><span class="Label">6.8</span></td><td title="C+" align="center"><span class="Label">C+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">39</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">SKD1102</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Kỹ năng làm việc nhóm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">1</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.0</span></td><td title="7.5" align="center"><span class="Label">7.5</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="7.7" align="center"><span class="Label">7.7</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">6.80</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">2.64</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy:</span><span class="Label">6.84</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">2.44</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ đạt:</span><span class="Label">14</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ tích lũy:</span><span class="Label">77</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Học kỳ 2 - Năm học 2017-2018</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">40</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1328</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Kỹ thuật đồ họa</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">30</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.5</span></td><td title="3.0" align="center"><span class="Label">3.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.2" align="center"><span class="Label">5.2</span></td><td title="D+" align="center"><span class="Label">D+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">41</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1341</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Nhập môn trí tuệ nhân tạo</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3.0</span></td><td title="5.5" align="center"><span class="Label">5.5</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.6" align="center"><span class="Label">5.6</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">42</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1340</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Nhập môn công nghệ phần mềm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3.0</span></td><td title="C" align="center"><span class="Label">C</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="0.0" align="center"><span class="Label">0.0</span></td><td title="F" align="center"><span class="Label">F</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">43</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1362</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Xử lý ảnh</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.5</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.5</span></td><td title="8.0" align="center"><span class="Label">8.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="8.3" align="center"><span class="Label">8.3</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">44</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1336</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Mạng máy tính</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">4.5</span></td><td title="8.0" align="center"><span class="Label">8.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="7.4" align="center"><span class="Label">7.4</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">45</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1303</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">An toàn và bảo mật hệ thống thông tin</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td title="8.0" align="center"><span class="Label">8.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="7.5" align="center"><span class="Label">7.5</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">5.53</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">2.13</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy:</span><span class="Label">6.84</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">2.47</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ đạt:</span><span class="Label">13</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ tích lũy:</span><span class="Label">90</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Học kỳ 3 - Năm học 2017-2018</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">46</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">ELE1330</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Xử lý tín hiệu số</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td title="2.5" align="center"><span class="Label">2.5</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="4.7" align="center"><span class="Label">4.7</span></td><td title="D" align="center"><span class="Label">D</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">47</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">ELE1319</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Lý thuyết thông tin</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">70</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td title="4.0" align="center"><span class="Label">4.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.5" align="center"><span class="Label">5.5</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">5.18</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">1.60</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy:</span><span class="Label">6.75</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">2.42</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ đạt:</span><span class="Label">5</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ tích lũy:</span><span class="Label">95</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Học kỳ 1 - Năm học 2018-2019</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">48</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1342M</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Phân tích và thiết kế hệ thống thông tin</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td title="2.5" align="center"><span class="Label">2.5</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="3.7" align="center"><span class="Label">3.7</span></td><td title="F" align="center"><span class="Label">F</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">49</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1414</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Cơ sở dữ liệu phân tán</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">8.5</span></td><td title="3.0" align="center"><span class="Label">3.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.2" align="center"><span class="Label">5.2</span></td><td title="D+" align="center"><span class="Label">D+</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1433</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Lập trình mạng</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td title="3.0" align="center"><span class="Label">3.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="4.8" align="center"><span class="Label">4.8</span></td><td title="D" align="center"><span class="Label">D</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">51</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1405</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Các hệ thống phân tán</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">9.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">1.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.5</span></td><td title="9.0" align="center"><span class="Label">9.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="7.7" align="center"><span class="Label">7.7</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">52</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1450</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Quản lý dự án phần mềm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">2</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">30</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">60</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">7.0</span></td><td title="4.5" align="center"><span class="Label">4.5</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="5.5" align="center"><span class="Label">5.5</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">53</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1434</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Lập trình Web</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">20</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">50</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">10.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">5.5</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">6.0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td title="7.0" align="center"><span class="Label">7.0</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="6.8" align="center"><span class="Label">6.8</span></td><td title="C+" align="center"><span class="Label">C+</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">5.65</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">1.66</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy:</span><span class="Label">6.67</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">2.38</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ đạt:</span><span class="Label">13</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="17"><span class="Label" style="display:inline-block;">Số tín chỉ tích lũy:</span><span class="Label">108</span></td>
+		</tr><tr class="title-hk-diem">
+			<td align="left" colspan="17"><span class="Label">Học kỳ 2 - Năm học 2018-2019</span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">54</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1449</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Phát triển ứng dụng cho các thiết bị di động</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">55</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1416</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Đảm bảo chất lượng phần mềm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">56</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1448</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Phát triển phần mềm hướng dịch vụ</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">57</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1408</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Chuyên đề công nghệ phần mềm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">1</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">58</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1461</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Xây dựng các hệ thống nhúng</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem">
+			<td align="left" width="16"><span class="Label" style="display:inline-block;">59</span></td><td align="center" width="60"><span class="Label" style="display:inline-block;">INT1427</span></td><td align="left" width="250"><span class="Label" style="display:inline-block;">Kiến trúc và thiết kế phần mềm</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">3</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">0</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;">100</span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center" width="20"><span class="Label" style="display:inline-block;"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr>
+	</table>
+                
+             </div>
+        </td>
+    </tr>
+    <tr>
+        <td >
+        <br/>
+        <center>
+            <a id="ctl00_ContentPlaceHolder1_ctl00_lnkChangeview" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$ctl00$lnkChangeview','')"><b><font color="Red">Học kỳ 2 Năm học 2018</font></b></a>
+           
+            </center>
+            
+            <br />
+            <span id="ctl00_ContentPlaceHolder1_ctl00_lblNgayCapNhatDiem" class="Label">(  Dữ liệu được cập nhật vào lúc: 14:6 Ngày: 14/5/2019 )</span>
+            <br />
+            
+        </td>
+    </tr>
+</table>
+        
+
+</div>
+
+
+
+
+ <center>
+ <h3>
+            <a href="Report/Report_xemDiemThi.aspx" id="ctl00_ContentPlaceHolder1_ctl00_linkInDiem" target="_blank">IN ĐIỂM THI</a>
+     <br />
+     <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnExport" value="XUẤT FILE EXCEL" id="ctl00_ContentPlaceHolder1_ctl00_btnExport" class="DefaultButton" />
+ </h3>
+     </center>
+
+
+
+    
+
+
+             </td></tr><tr><td>
+                
+
+<style type="text/css">
+   
+    .style3
+    {
+        width: 70px;
+    }
+    .style4
+    {
+        width: 129px;
+    }
+    .style5
+    {
+        width: 1019px;
+    }
+   
+</style>
+
+<div class="footer">
+<table width="100%"><tr><td align="left" class="style5" >
+<img src="App_Themes/Standard/Images/icon_11c.gif" alt="" />
+<span class="LogoFooter"><span id="ctl00_Footer1_lblCompany" class="Label">Copyright ©2009 Cơ Sở Miền Bắc. Quản lý bởi </span></span>
+</td>
+    
+        <td valign="top"  align="left" class="style4">
+        <img src="App_Themes/Standard/Images/iconHome.png" alt="" align="right"  />    
+        </td>
+        <td align="left" class="style3">
+        <a href="Default.aspx"><span id="ctl00_Footer1_lbltrangchu" class="Label">Trang Chủ</span></a>
+        </td>
+        
+        
+</tr>
+<tr>
+<td class="style5" >
+    <img src="App_Themes/Standard/Images/icon_11c.gif" alt="" /> 
+    <a href="http://www.edusoft.net.vn" target="_blank"><span id="ctl00_Footer1_lblCopyRight" class="Label">Thiết kế bởi cty Phần mềm Anh Quân</span></a>
+    
+    
+     
+</td>
+<td align="right" valign="top" class="style4"> 
+    <img src="App_Themes/Standard/Images/topTen.gif" width="15px" alt="" />
+    </td>
+    <td class="style3">
+    <a href="#Top" title="Go to top" style="text-decoration: none; font-family:Tahoma;font-size:8pt">
+    <span id="ctl00_Footer1_lbltop" class="Label">Đầu Trang</span>
+    </a>
+</td>
+<td align="right"><a href="Default.aspx?page=thongtinsp"><span id="ctl00_Footer1_lblAbout" class="Label">About</span></a></td>
+</tr>
+
+</table></div>
+  
+            </td></tr></table>
+        </div>
+     </div>
+
+       
+
+
+    
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.initialize();
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"msgbox_messagemodalbackground","CancelControlID":"ctl00_ContentPlaceHolder1_ctl00_MessageBox1_imgCloseButton","OkControlID":"ctl00_ContentPlaceHolder1_ctl00_MessageBox1_btnOk","PopupControlID":"ctl00_ContentPlaceHolder1_ctl00_MessageBox1_panelMessageBox","dynamicServicePath":"/default.aspx","id":"ctl00_ContentPlaceHolder1_ctl00_MessageBox1_ajaxModal"}, null, null, $get("ctl00_ContentPlaceHolder1_ctl00_MessageBox1_lbTarget"));
+});
+//]]>
+</script>
+</form>
+
+</body>
+</html>

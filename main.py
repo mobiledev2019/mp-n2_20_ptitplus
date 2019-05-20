@@ -7,11 +7,6 @@ def api():
     msg = request.args.get('last user freeform input')
     rps_text, rps_url = qldt_schedule_creator.main(msg, _GENERATE_IMAGE = True)
     print("IMAGE URL -> {}".format(rps_url))
-    # j = {
-    #     "messages":[
-    #         {"text":rps_text}
-    #     ]
-    # }
     j = {
         "messages":[
             {"text":rps_text},
@@ -39,7 +34,6 @@ def image_api():
     print("IMAGE URL -> {}".format(rps_url))
     j = {
         "messages":[
-            # {"text":rps_text},
             {'attachment':{'type':'image','payload':{'url':rps_url}}}
         ]
     }
@@ -58,9 +52,15 @@ def test():
             {'attachment':{'type':'image','payload':{'url':rps_url}}}
         ]
     }
-    # print(j)
     return jsonify(j)
 
+
+@app.route('/text_api_point_report', methods=['GET'])
+def point_report():
+    username = request.args.get('username')
+    password = request.args.get('password')
+    rps_text = qldt_schedule_creator.get_point_report(username, password)
+    return jsonify(rps_text)
 
 @app.route('/', methods=['GET'])
 def index():
