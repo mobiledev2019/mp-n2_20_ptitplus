@@ -21,6 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -46,8 +50,9 @@ public class DiemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diem);
-
-        new ReadJSONObject().execute("http://test1428.herokuapp.com/text_api_point_report?username=b15dccn194&password=250797");
+        String username = getSharedPreferences("dataLogin", MODE_PRIVATE).getString("userName", "");
+        String password = getSharedPreferences("dataLogin", MODE_PRIVATE).getString("password", "");
+        new ReadJSONObject().execute("http://test1428.herokuapp.com/text_api_point_report?username=" + username + "&password=" + password);
 
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
@@ -65,18 +70,18 @@ public class DiemActivity extends AppCompatActivity {
 
         actionListener();
 
-        listDiem = new ArrayList<>();
-        listDiem.add(new Diem("INT1919", "Cau truc du lieu va giai thuat", "8.0", "B+"));
-        listDiem.add(new Diem("INT1920", "Giai tich", "8.5", "A"));
-        listDiem.add(new Diem("INT2019", "Vat ly 3", "9.0", "A+"));
-        listDiem.add(new Diem("ABS1415", "Tieng anh A.11", "6.0", "C"));
-        listDiem.add(new Diem("ABS2627", "Mac Lenin", "6.5", "C+"));
-        listDiem.add(new Diem("ABS5647", "Tieng anh A.21", "7.0", "B"));
-
-        lvDiem = (ListView) findViewById(R.id.lvDiem);
-
-        adapter = new DiemAdapter(DiemActivity.this, R.layout.item_diem, listDiem);
-        lvDiem.setAdapter(adapter);
+//        listDiem = new ArrayList<>();
+//        listDiem.add(new Diem("INT1919", "Cau truc du lieu va giai thuat", "8.0", "B+"));
+//        listDiem.add(new Diem("INT1920", "Giai tich", "8.5", "A"));
+//        listDiem.add(new Diem("INT2019", "Vat ly 3", "9.0", "A+"));
+//        listDiem.add(new Diem("ABS1415", "Tieng anh A.11", "6.0", "C"));
+//        listDiem.add(new Diem("ABS2627", "Mac Lenin", "6.5", "C+"));
+//        listDiem.add(new Diem("ABS5647", "Tieng anh A.21", "7.0", "B"));
+//
+//        lvDiem = (ListView) findViewById(R.id.lvDiem);
+//
+//        adapter = new DiemAdapter(DiemActivity.this, R.layout.item_diem, listDiem);
+//        lvDiem.setAdapter(adapter);
     }
     protected void actionListener() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -230,7 +235,34 @@ public class DiemActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Toast.makeText(DiemActivity.this, s, Toast.LENGTH_LONG ).show();
+//            Toast.makeText(DiemActivity.this, s, Toast.LENGTH_LONG ).show();
+            listDiem = new ArrayList<>();
+//            listDiem.add(new Diem("INT1919", "Cau truc du lieu va giai thuat", "8.0", "B+"));
+            JSONArray j = null;
+            try {
+                j = new JSONArray(s);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            for(int i = j.length() - 1; i >= 0; i--) {
+                JSONObject item = null;
+                try {
+                    item = (JSONObject) j.get(i);
+                    JSONArray item_data = (JSONArray) item.get("data");
+                    for(int i2 = 0; i2 < item_data.length(); i2++){
+                        JSONArray item_detail = (JSONArray)item_data.get(i2);
+                        listDiem.add(new Diem(item_detail.getString(1), item_detail.getString(2), item_detail.getString(15), item_detail.getString(16)));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            lvDiem = (ListView) findViewById(R.id.lvDiem);
+
+            adapter = new DiemAdapter(DiemActivity.this, R.layout.item_diem, listDiem);
+            lvDiem.setAdapter(adapter);
         }
     }
 }
