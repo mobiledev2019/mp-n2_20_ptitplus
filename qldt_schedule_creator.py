@@ -297,7 +297,6 @@ def get_all_point_from_html_source(rps):
 		term_report = []
 		for i in range(0, 40):
 			try:
-
 				row_diem = row_diem.find_next('tr')
 				if row_diem['class'] == ["row-diem"]:
 					tmp_0012 = row_diem.find_all('td')
@@ -308,9 +307,9 @@ def get_all_point_from_html_source(rps):
 					# print(tmp_0018) #tmp_0018 ->['1', 'BAS1141', 'Tiếng anh A11', '3', '0', '0', '0', '0', '100', ' \xa0 ', ' \xa0 ', ' \xa0 ', ' \xa0 ', ' \xa0 ', ' \xa0 ', '10.0', 'A+']
 				elif row_diem['class'] == ["row-diemTK"]:
 					tmp_0049 = row_diem.find_all('td')
-					tmp_0050 = []
+					tmp_0050 = {}
 					for item in tmp_0049:
-						tmp_0050 = item.text
+						tmp_0050[item.find_all('span')[0].text] = item.find_all('span')[1].text
 					# print(tmp_0050)
 					term_report.append(tmp_0050)
 				else:
@@ -328,7 +327,8 @@ def get_all_point_from_html_source(rps):
 		j['report'] = term_report
 		# print(json.dumps(j, indent=4, sort_keys=True))
 		term_lists.append(j)
-	return json.dumps(term_lists)
+	# return json.dumps(term_lists)
+	return term_lists
 
 def get_weekly_schedule_from_server_response(rps):
 	"""
@@ -421,6 +421,7 @@ def main(msg, _GENERATE_IMAGE):
 	return rps, img_url
 
 def get_point_report(username, password):
+	print('hello, im get_point_report')
 	init()
 	if init_home_page() == SUCCESS:
 		qldt_login(username, password)
