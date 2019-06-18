@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_trangchu"
+            android:icon="@drawable/homepage"
+            android:title="Trang chủ" />
+        <item
+            android:id="@+id/nav_tintuc"
+            android:icon="@drawable/newss"
+            android:title="Tin Tức" />
+        <item
+            android:id="@+id/nav_tkb"
+            android:icon="@drawable/schedule"
+            android:title="Thời khoá biểu" />
+        <item
+            android:id="@+id/nav_loinhac"
+            android:icon="@drawable/note"
+            android:title="Lời nhắc" />
+        <item
+            android:id="@+id/nav_diemthi"
+            android:icon="@drawable/score"
+            android:title="Điểm thi" />
+        <item
+            android:id="@+id/nav_diemtichluy"
+            android:icon="@drawable/point"
+            android:title="Điểm tích luỹ" />
+        <item
+            android:id="@+id/nav_bando"
+            android:icon="@drawable/map"
+            android:title="Bản đồ" />
+
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_dangxuat"
+                android:icon="@drawable/singout"
+                android:title="Đăng xuất" />
+        </menu>
+    </item>
+
+</menu>
