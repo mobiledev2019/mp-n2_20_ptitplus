@@ -6,23 +6,26 @@ public class Diem {
     private String tenMH;
     private String diem;
     private String xepLoai;
+    private int sotc;
 
     public Diem() {
     }
 
-    public Diem(int id, String maMH, String tenMH, String diem, String xepLoai) {
+    public Diem(int id, String maMH, String tenMH, String diem, String xepLoai, int sotc) {
         this.id = id;
         this.maMH = maMH;
         this.tenMH = tenMH;
         this.diem = diem;
         this.xepLoai = xepLoai;
+        this.sotc = sotc;
     }
 
-    public Diem(String maMH, String tenMH, String diem, String xepLoai) {
+    public Diem(String maMH, String tenMH, String diem, String xepLoai, int sotc) {
         this.maMH = maMH;
         this.tenMH = tenMH;
         this.diem = diem;
         this.xepLoai = xepLoai;
+        this.sotc = sotc;
     }
 
     public int getId() {
@@ -63,5 +66,13 @@ public class Diem {
 
     public void setXepLoai(String xepLoai) {
         this.xepLoai = xepLoai;
+    }
+
+    public int getSotc() {
+        return sotc;
+    }
+
+    public void setSotc(int sotc) {
+        this.sotc = sotc;
     }
 }

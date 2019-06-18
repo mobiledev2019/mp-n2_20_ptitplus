@@ -3,6 +3,7 @@ package com.example.btl;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,6 +30,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class ThoiKhoaBieuActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -37,10 +44,19 @@ public class ThoiKhoaBieuActivity extends AppCompatActivity {
     TextView textNotificationItemCount;
     int mCartItemCount;
     TextView txtTKB;
+
+    DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thoi_khoa_bieu);
+
+        db = new DatabaseHelper(getApplicationContext());
+        SharedPreferences sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+
+        String name = sharedPreferences.getString("userName", "");
+        new ReadJSONObject().execute("http://test1428.herokuapp.com/text_api?last+user+freeform+input="+name);
 
 //        dataBase = new DataBase(this, "ptit.sqlite", null, 2);
 //        Cursor numberTB = dataBase.GetData("SELECT * FROM ThongBao WHERE tinhTrang = 0");
@@ -63,37 +79,7 @@ public class ThoiKhoaBieuActivity extends AppCompatActivity {
         actionListener();
 
         txtTKB = (TextView) findViewById(R.id.txtTKBDay);
-        SharedPreferences sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
 
-        String name = sharedPreferences.getString("userName", "");
-        Toast.makeText(ThoiKhoaBieuActivity.this, name, Toast.LENGTH_LONG ).show();
-
-
-        String url = "http://test1428.herokuapp.com/text_api?last+user+freeform+input=B15DCCN194";
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("messages");
-                            JSONObject obTKB = jsonArray.getJSONObject(0);
-                            String txt = obTKB.getString("text");
-                            txtTKB.setText(txt);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ThoiKhoaBieuActivity.this, "LOI", Toast.LENGTH_LONG).show();
-                    }
-                });
-        requestQueue.add(jsonObjectRequest);
     }
 
     protected void actionListener() {
@@ -143,7 +129,7 @@ public class ThoiKhoaBieuActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_tkb :
                         menuItem.setChecked(true);
-                        showMessage("Thoi khoa bieu");
+
                         drawerLayout.closeDrawers();
                         return true;
                 }
@@ -215,6 +201,42 @@ public class ThoiKhoaBieuActivity extends AppCompatActivity {
                     textNotificationItemCount.setVisibility(View.VISIBLE);
                 }
             }
+        }
+    }
+
+    private class ReadJSONObject extends AsyncTask<String, Void, String> {
+
+        StringBuilder content = new StringBuilder();
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                URL url = new URL(strings[0]);
+
+                InputStreamReader inputStreamReader = new InputStreamReader(url.openConnection().getInputStream());
+
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    content.append(line);
+                }
+
+                bufferedReader.close();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return content.toString();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            Toast.makeText(ThoiKhoaBieuActivity.this, s, Toast.LENGTH_LONG).show();
+
+
         }
     }
 }

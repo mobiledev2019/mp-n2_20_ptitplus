@@ -55,7 +55,9 @@ public class TrangChuActivity extends AppCompatActivity {
 
     ListView lvTKB;
     ListView lvLoiNhac;
+    TextView noTKB;
     ArrayList<KipHoc> listKipHoc;
+    ArrayList<LoiNhac> listAllLoiNhac;
     ArrayList<LoiNhac> listLoiNhac;
     ArrayList<KipHoc> listKHToday;
     KipHocAdapter adapterKipHoc;
@@ -66,6 +68,7 @@ public class TrangChuActivity extends AppCompatActivity {
     private java.util.Calendar month;
     public GregorianCalendar cal_month;
     private GregorianCalendar selectedDate;
+    DatabaseHelper db;
 
     TextView tvTKB;
     String noiDungTKB;
@@ -78,34 +81,13 @@ public class TrangChuActivity extends AppCompatActivity {
 
         tvTKB = (TextView) findViewById(R.id.tvTKB);
         layoutLoad = (RelativeLayout) findViewById(R.id.loadingPanel);
+        db = new DatabaseHelper(getApplicationContext());
 
-        String url = "http://test1428.herokuapp.com/text_api?last+user+freeform+input=B15DCCN194";
+        SharedPreferences sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("messages");
-                            JSONObject obTKB = jsonArray.getJSONObject(0);
-                            String txt = obTKB.getString("text");
-                            tvTKB.setText(txt);
-                            layoutLoad.setVisibility(View.GONE);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+        String name = sharedPreferences.getString("userName", "");
 
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(TrangChuActivity.this, "LOI", Toast.LENGTH_LONG).show();
-                    }
-                });
-        requestQueue.add(jsonObjectRequest);
-
+        new ReadJSONObject().execute("http://test1428.herokuapp.com/text_api?last+user+freeform+input="+name);
 
 //        dataBase = new DataBase(this, "ptit.sqlite", null, 5);
 //        Cursor numberTB = dataBase.GetData("SELECT * FROM ThongBao WHERE tinhTrang = 0");
@@ -128,33 +110,32 @@ public class TrangChuActivity extends AppCompatActivity {
         actionListener();
 
         lvLoiNhac = (ListView) findViewById(R.id.lvLoiNhacToday);
+        noTKB = (TextView) findViewById(R.id.noTKB);
 
+        listAllLoiNhac = new ArrayList<>();
         listLoiNhac = new ArrayList<>();
 
-//        dataBase = new DataBase(this, "ptit.sqlite", null, 5);
-//
-//        cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
-//        month = cal_month;
-//        selectedDate = (GregorianCalendar) cal_month.clone();
-//        df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-//        curentDateString = df.format(selectedDate.getTime());
-//
-//        Cursor dataLoiNhac = dataBase.GetData("SELECT * FROM LoiNhac");
-//
-//        while (dataLoiNhac.moveToNext()){
-//            int id = dataLoiNhac.getInt(0);
-//            String noiDung = dataLoiNhac.getString(1);
-//            String date = dataLoiNhac.getString(2);
-//            int trangThai = dataLoiNhac.getInt(3);
-//
-//            if (date.equals(curentDateString)) {
-//                listLoiNhac.add(new LoiNhac(id, noiDung, date, trangThai));
-//            }
-//
-//        }
-//
-//        adapterLoiNhac = new LoiNhacAdapter(this, R.layout.item_list_loi_nhac, listLoiNhac);
-//        lvLoiNhac.setAdapter(adapterLoiNhac);
+
+
+        cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
+        month = cal_month;
+        selectedDate = (GregorianCalendar) cal_month.clone();
+        df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        curentDateString = df.format(selectedDate.getTime());
+
+
+
+        listAllLoiNhac = (ArrayList<LoiNhac>) db.getAllLoiNhac();
+        for (int i=0; i<listLoiNhac.size(); i++) {
+            if (listLoiNhac.get(i).getDate().equals(curentDateString)) {
+                listLoiNhac.add(listAllLoiNhac.get(i));
+            }
+
+        }
+
+
+        adapterLoiNhac = new LoiNhacAdapter(this, R.layout.item_list_loi_nhac, listLoiNhac);
+        lvLoiNhac.setAdapter(adapterLoiNhac);
 
     }
 
@@ -281,4 +262,50 @@ public class TrangChuActivity extends AppCompatActivity {
         }
     }
 
+    private class ReadJSONObject extends AsyncTask<String, Void, String> {
+
+        StringBuilder content = new StringBuilder();
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                URL url = new URL(strings[0]);
+
+                InputStreamReader inputStreamReader = new InputStreamReader(url.openConnection().getInputStream());
+
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    content.append(line);
+                }
+
+                bufferedReader.close();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return content.toString();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                if(jsonObject.length()<2) {
+                    noTKB.setText("Bạn không có lịch học hôm nay.");
+                    layoutLoad.setVisibility(View.GONE);
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
+    }
 }
+

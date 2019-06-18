@@ -46,6 +46,7 @@ public class DiemAdapter extends BaseAdapter {
         TextView tenMH = (TextView) convertView.findViewById(R.id.tvTenMH);
         TextView tvdiem = (TextView) convertView.findViewById(R.id.tvDiem);
         TextView xepLoai = (TextView) convertView.findViewById(R.id.tvXepLoai);
+        TextView soTC = (TextView)  convertView.findViewById(R.id.tvSoTC);
 
         Diem diem = listDiem.get(position);
 
@@ -53,6 +54,7 @@ public class DiemAdapter extends BaseAdapter {
         tenMH.setText(diem.getTenMH());
         tvdiem.setText(diem.getDiem());
         xepLoai.setText(diem.getXepLoai());
+        soTC.setText(diem.getSotc()+"");
 
         return convertView;
     }

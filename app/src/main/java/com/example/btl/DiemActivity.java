@@ -44,7 +44,12 @@ public class DiemActivity extends AppCompatActivity {
     TextView textNotificationItemCount;
     int mCartItemCount = 5;
     SharedPreferences sharedPreferences;
-    TextView list;
+    TextView tl;
+
+    double diemTLT = 0;
+    int soTC = 0;
+    double diemTL;
+    DatabaseHelper db;
 
 
     @Override
@@ -53,6 +58,7 @@ public class DiemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diem);
 
         new ReadJSONObject().execute("http://test1428.herokuapp.com/text_api_point_report?username=b15dccn194&password=250797");
+        db = new DatabaseHelper(getApplicationContext());
 
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
@@ -71,16 +77,25 @@ public class DiemActivity extends AppCompatActivity {
         actionListener();
 
         listDiem = new ArrayList<>();
-        listDiem.add(new Diem("INT1919", "Cau truc du lieu va giai thuat", "8.0", "B+"));
-        listDiem.add(new Diem("INT1920", "Giai tich", "8.5", "A"));
-        listDiem.add(new Diem("INT2019", "Vat ly 3", "9.0", "A+"));
-        listDiem.add(new Diem("ABS1415", "Tieng anh A.11", "6.0", "C"));
-        listDiem.add(new Diem("ABS2627", "Mac Lenin", "6.5", "C+"));
-        listDiem.add(new Diem("ABS5647", "Tieng anh A.21", "7.0", "B"));
+
+        listDiem = (ArrayList<Diem>) db.getAllDiem();
+
+        for (int i=0; i< listDiem.size(); i++) {
+
+            soTC += listDiem.get(i).getSotc();
+            String diem = listDiem.get(i).getDiem();
+//            if (!diem.equals("")) {
+//                Double d = Double.parseDouble(diem);
+//                Toast.makeText(this, d +"", Toast.LENGTH_LONG).show();
+//            }
+        }
+
+
 
 
 
         lvDiem = (ListView) findViewById(R.id.lvDiem);
+        tl = (TextView)  findViewById(R.id.diemTL);
 
         adapter = new DiemAdapter(DiemActivity.this, R.layout.item_diem, listDiem);
         lvDiem.setAdapter(adapter);
@@ -133,7 +148,8 @@ public class DiemActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_tkb :
                         menuItem.setChecked(true);
-                        showMessage("Thoi khoa bieu");
+                        Intent intent_tkb = new Intent(DiemActivity.this, ThoiKhoaBieuActivity.class);
+                        startActivity(intent_tkb);
                         drawerLayout.closeDrawers();
                         return true;
                 }
@@ -252,9 +268,8 @@ public class DiemActivity extends AppCompatActivity {
                         diem.setTenMH(jsonArrayMH.getString(2));
                         diem.setDiem(jsonArrayMH.getString(15));
                         diem.setXepLoai(jsonArrayMH.getString(16));
-                        Toast.makeText(DiemActivity.this,jsonArrayMH.getString(2), Toast.LENGTH_LONG ).show();
-
-
+                        diem.setSotc(jsonArrayMH.getInt(3));
+                        db.createDiem(diem);
                     }
                 }
 

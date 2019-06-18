@@ -117,7 +117,6 @@ public class LoiNhacActivity extends AppCompatActivity {
                                 break;
                             case R.id.itemXoa:
                                 int id = arrayLoiNhac.get(position).getId();
-                                Toast.makeText(LoiNhacActivity.this, id +"", Toast.LENGTH_LONG).show();
                                 db.deleteLoiNhac(id);
                                 arrayLoiNhac.remove(position);
                                 adapter.notifyDataSetChanged();
@@ -170,19 +169,15 @@ public class LoiNhacActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String noiDungLoiNhac = edtNoiDungLoiNhac.getText().toString();
-                Toast.makeText(LoiNhacActivity.this, noiDungLoiNhac, Toast.LENGTH_SHORT).show();
                 if(!noiDungLoiNhac.equals("")) {
                     LoiNhac ln = new LoiNhac(noiDungLoiNhac, dateSelected, 0);
                     String id_long = db.createLoiNhac(ln) + "";
                     int id = Integer.parseInt(id_long);
-                    ln.setId(id);
-                    arrayLoiNhac.add(ln);
-//                    arrayLNAdd.add(ln);
+
                     adapter.notifyDataSetChanged();
                     txtNothing.setVisibility(View.GONE);
                 }
                 dialog.dismiss();
-
             }
         });
         btncancle.setOnClickListener(new View.OnClickListener() {

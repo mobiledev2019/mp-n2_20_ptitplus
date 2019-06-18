@@ -12,20 +12,28 @@
         android:id="@+id/tvMaMonHoc"
         android:textColor="#333"/>
     <TextView
-        android:layout_width="210dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:text="Lập trình hướng đôi tượng"
         android:id="@+id/tvTenMH"
         android:textColor="#333"
         />
     <TextView
-        android:layout_width="45dp"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:id="@+id/tvSoTC"
+        android:textColor="#333"
+        />
+
+    <TextView
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="8.5"
         android:id="@+id/tvDiem"
         android:textColor="#333"/>
     <TextView
-        android:layout_width="65dp"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:text="A"
         android:id="@+id/tvXepLoai"

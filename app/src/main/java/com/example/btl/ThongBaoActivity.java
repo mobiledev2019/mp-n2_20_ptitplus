@@ -31,12 +31,15 @@ public class ThongBaoActivity extends AppCompatActivity {
     ArrayList<ThongBao> listThongBao;
     ThongBaoAdapter adapter;
     ArrayList<LoiNhac> listLoiNhac;
+    DatabaseHelper db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_bao);
+
+        db = new DatabaseHelper(getApplicationContext());
 
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
@@ -57,24 +60,12 @@ public class ThongBaoActivity extends AppCompatActivity {
         lvThongBao = (ListView) findViewById(R.id.lvThongBao);
         listLoiNhac = new ArrayList<>();
 
-//        dataBase = new DataBase(this, "ptit.sqlite", null, 2);
+
 //
-//        Cursor dataThongBao = dataBase.GetData("SELECT * FROM ThongBao");
-//        listThongBao = new ArrayList<>();
-//        while (dataThongBao.moveToNext()) {
-//            int id = dataThongBao.getInt(0);
-//            String noiDungTB = dataThongBao.getString(1);
-//            String loaiTB = dataThongBao.getString(2);
-//            int tinhTrang = dataThongBao.getInt(3);
-//            String date = dataThongBao.getString(4);
-//
-//            listThongBao.add(new ThongBao(id, noiDungTB, loaiTB, tinhTrang, date));
-//        }
-//
-//        adapter = new ThongBaoAdapter(ThongBaoActivity.this, R.layout.item_list_thong_bao, listThongBao );
-//        lvThongBao.setAdapter(adapter);
-//
-//        dataBase.QueryData("UPDATE ThongBao SET tinhTrang = 0");
+        adapter = new ThongBaoAdapter(ThongBaoActivity.this, R.layout.item_list_thong_bao, listThongBao );
+        lvThongBao.setAdapter(adapter);
+
+        
 
 
     }

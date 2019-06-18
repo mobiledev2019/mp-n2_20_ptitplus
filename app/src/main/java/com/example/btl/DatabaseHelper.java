@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     private static final String DATABASE_NAME = "myPtit";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String TABLE_DIEM = "diem_tich_luy";
     private static final String TABLE_KIPHOC = "kip_hoc";
@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_THONGBAO = "thong_bao";
 
     private static final String CREATE_TABLE_DIEM = "CREATE TABLE IF NOT EXISTS "
-            + TABLE_DIEM + "(id INTEGER PRIMARY KEY AUTOINCREMENT, maMH VARCHAR(50), tenMH VARCHAR(200), diem VARCHAR(15), xepLoai VARCHAR(2))";
+            + TABLE_DIEM + "(id INTEGER PRIMARY KEY AUTOINCREMENT, maMH VARCHAR(50), tenMH VARCHAR(200), diem VARCHAR(15), xepLoai VARCHAR(2), sotc INTEGER)";
 
     private static final String CREATE_TABLE_KIPHOC = "CREATE TABLE IF NOT EXISTS "
             + TABLE_KIPHOC + "(id INTEGER PRIMARY KEY AUTOINCREMENT, date VARCHAR(50), tenMH VARCHAR(200), tenGV VARCHAR(100), thoiGian VARCHAR(20), phongHoc VARCHAR(50))";
@@ -72,6 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("tenMH", diem.getTenMH());
         values.put("diem", diem.getDiem());
         values.put("xepLoai", diem.getXepLoai());
+        values.put("sotc", diem.getSotc());
 
         // insert row
         long diem_id = db.insert(TABLE_DIEM, null, values);
@@ -96,6 +97,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         diem.setTenMH(c.getString(c.getColumnIndex("tenMH")));
         diem.setDiem(c.getString(c.getColumnIndex("diem")));
         diem.setXepLoai(c.getString(c.getColumnIndex("xepLoai")));
+        diem.setSotc(c.getInt(c.getColumnIndex("sotc")));
         return diem;
     }
     public List<Diem> getAllDiem() {
@@ -116,8 +118,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 diem.setTenMH(c.getString(c.getColumnIndex("tenMH")));
                 diem.setDiem(c.getString(c.getColumnIndex("diem")));
                 diem.setXepLoai(c.getString(c.getColumnIndex("xepLoai")));
+                diem.setSotc(c.getInt(c.getColumnIndex("sotc")));
 
-                // adding to todo list
+                // adding to
                 diems.add(diem);
             } while (c.moveToNext());
         }
@@ -132,6 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("tenMH", diem.getTenMH());
         values.put("diem", diem.getDiem());
         values.put("xepLoai", diem.getXepLoai());
+        values.put("sotc", diem.getSotc());
 
         // updating row
         return db.update(TABLE_DIEM, values, "id = ?",

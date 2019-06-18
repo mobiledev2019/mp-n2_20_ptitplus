@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void goToActivity(){
-        Intent i = new Intent(MainActivity.this,DiemActivity.class);
+        Intent i = new Intent(MainActivity.this,TrangChuActivity.class);
         startActivity(i);
     }
 
