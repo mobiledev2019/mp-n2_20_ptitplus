@@ -43,7 +43,7 @@ public class LoiNhacCalendarActivity extends AppCompatActivity {
     ArrayList<LoiNhac> arrayLoiNhac;
     int REQUEST_CODE_EDIT = 123;
 
-//    DataBase dataBase;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,10 @@ public class LoiNhacCalendarActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationView);
         actionListener();
 
+        db = new DatabaseHelper(getApplicationContext());
         arrayLoiNhac = new ArrayList<>();
+
+        arrayLoiNhac = (ArrayList<LoiNhac>) db.getAllLoiNhac();
 
 //        dataBase = new DataBase(this, "ptit.sqlite", null, 2);
 //
@@ -158,13 +161,12 @@ public class LoiNhacCalendarActivity extends AppCompatActivity {
             Bundle bundle = data.getBundleExtra("dataAdd");
             ArrayList<LoiNhac> arrayadd = new ArrayList<>();
             arrayadd = bundle.getParcelableArrayList("listAdd");
-
+            arrayLoiNhac.clear();
             for (int i=0; i<arrayadd.size(); i++){
                 LoiNhac ln = arrayadd.get(i);
                 arrayLoiNhac.add(ln);
-                loiNhacAdapterGrid.notifyDataSetChanged();
-
             }
+            loiNhacAdapterGrid.notifyDataSetChanged();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

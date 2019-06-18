@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progress);
         btDN = (Button) findViewById(R.id.buttonDN);
 
-
         if(sharedPreferences.getBoolean("logged",false)){
             goToActivity();
         }

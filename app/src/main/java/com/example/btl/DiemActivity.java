@@ -21,6 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -40,6 +44,7 @@ public class DiemActivity extends AppCompatActivity {
     TextView textNotificationItemCount;
     int mCartItemCount = 5;
     SharedPreferences sharedPreferences;
+    TextView list;
 
 
     @Override
@@ -72,6 +77,8 @@ public class DiemActivity extends AppCompatActivity {
         listDiem.add(new Diem("ABS1415", "Tieng anh A.11", "6.0", "C"));
         listDiem.add(new Diem("ABS2627", "Mac Lenin", "6.5", "C+"));
         listDiem.add(new Diem("ABS5647", "Tieng anh A.21", "7.0", "B"));
+
+
 
         lvDiem = (ListView) findViewById(R.id.lvDiem);
 
@@ -230,7 +237,31 @@ public class DiemActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Toast.makeText(DiemActivity.this, s, Toast.LENGTH_LONG ).show();
+
+            try {
+                JSONArray jsonArray = new JSONArray(s);
+                for (int i=0; i<jsonArray.length(); i++) {
+                    JSONObject objectData = jsonArray.getJSONObject(i);
+                    JSONArray jsonArrayData = objectData.getJSONArray("data");
+
+                    for (int j=0; j<jsonArrayData.length(); j++) {
+                        JSONArray jsonArrayMH = jsonArrayData.getJSONArray(j);
+
+                        Diem diem = new Diem();
+                        diem.setMaMH(jsonArrayMH.getString(1));
+                        diem.setTenMH(jsonArrayMH.getString(2));
+                        diem.setDiem(jsonArrayMH.getString(15));
+                        diem.setXepLoai(jsonArrayMH.getString(16));
+                        Toast.makeText(DiemActivity.this,jsonArrayMH.getString(2), Toast.LENGTH_LONG ).show();
+
+
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }

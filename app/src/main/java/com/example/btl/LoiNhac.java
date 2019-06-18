@@ -60,6 +60,7 @@ public class LoiNhac implements Parcelable {
         this.trangthai = trangthai;
     }
 
+
     protected LoiNhac(Parcel in) {
         id = in.readInt();
         noiDung = in.readString();

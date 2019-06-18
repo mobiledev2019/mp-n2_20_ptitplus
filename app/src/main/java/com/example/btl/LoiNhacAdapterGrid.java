@@ -102,13 +102,6 @@ public class LoiNhacAdapterGrid extends BaseAdapter {
         }
 
 
-        if (day_string.get(position).equals(curentDateString)) {
-
-            v.setBackgroundColor(Color.parseColor("#D30000"));
-        } else {
-            v.setBackgroundColor(Color.parseColor("#ffffff"));
-        }
-
 
         dayView.setText(gridvalue);
 
@@ -122,6 +115,7 @@ public class LoiNhacAdapterGrid extends BaseAdapter {
         if (monthStr.length() == 1) {
             monthStr = "0" + monthStr;
         }
+
 
         setEventView(v, position,dayView);
 
@@ -171,6 +165,11 @@ public class LoiNhacAdapterGrid extends BaseAdapter {
         return maxP;
     }
     public void setEventView(View v,int pos,TextView txt){
+        if (day_string.get(pos).equals(curentDateString)) {
+            v.setBackgroundColor(Color.parseColor("#D7DFDC"));
+        } else {
+            v.setBackgroundColor(Color.parseColor("#ffffff"));
+        }
         ImageView iconDate = (ImageView) v.findViewById(R.id.date_icon);
         int len = listLoiNhac.size();
         for (int i = 0; i < len; i++) {
@@ -187,13 +186,25 @@ public class LoiNhacAdapterGrid extends BaseAdapter {
                     } else {
 
                         v.setBackgroundColor(Color.parseColor("#343434"));
-                        //neu trong collection co 1 sk co ngay trung voi 1 ngay trong thang thi set lai layout cho ngay co sk do
                         v.setBackgroundResource(R.drawable.rounded_calender);
-
                         txt.setTextColor(Color.parseColor("#696969"));
+
                     }
 
                 }
-            }}
+                if (day_string.get(pos).equals(date) && day_string.get(pos).equals(curentDateString)) {
+                    if ((Integer.parseInt(gridvalue) > 1) && (pos < firstDay)) {
+
+                    } else if ((Integer.parseInt(gridvalue) < 7) && (pos > 28)) {
+
+                    } else {
+                        v.setBackgroundResource(R.drawable.rounded_calender_current);
+                        txt.setTextColor(Color.parseColor("#ffffff"));
+
+                    }
+
+                }
+            }
+        }
     }
 }

@@ -30,6 +30,7 @@ public class LoiNhacActivity extends AppCompatActivity {
     EditText edtNoiDungLoiNhac;
     TextView txtNothing;
 
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,8 @@ public class LoiNhacActivity extends AppCompatActivity {
 
         arrayLoiNhac = bundle.getParcelableArrayList("arraylist");
         dateSelected = bundle.getString("date");
+
+        db = new DatabaseHelper(getApplicationContext());
 
         TextView showDate = (TextView) findViewById(R.id.showDate);
         showDate.setText(dateSelected);
@@ -97,6 +100,7 @@ public class LoiNhacActivity extends AppCompatActivity {
                                     public void onClick(View v) {
                                         String noiDungLoiNhac = edtNoiDungLoiNhac.getText().toString();
                                         arrayLoiNhac.get(position).setNoiDung(noiDungLoiNhac);
+                                        db.updateLoiNhac(arrayLoiNhac.get(position));
                                         adapter.notifyDataSetChanged();
                                         dialog.dismiss();
 
@@ -112,7 +116,9 @@ public class LoiNhacActivity extends AppCompatActivity {
                                 dialog.show();
                                 break;
                             case R.id.itemXoa:
-
+                                int id = arrayLoiNhac.get(position).getId();
+                                Toast.makeText(LoiNhacActivity.this, id +"", Toast.LENGTH_LONG).show();
+                                db.deleteLoiNhac(id);
                                 arrayLoiNhac.remove(position);
                                 adapter.notifyDataSetChanged();
                                 break;
@@ -143,6 +149,7 @@ public class LoiNhacActivity extends AppCompatActivity {
             case android.R.id.home:
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
+                arrayLNAdd = (ArrayList<LoiNhac>) db.getAllLoiNhac();
                 bundle.putParcelableArrayList("listAdd", arrayLNAdd);
                 intent.putExtra("dataAdd", bundle);
                 setResult(RESULT_OK, intent);
@@ -163,10 +170,17 @@ public class LoiNhacActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String noiDungLoiNhac = edtNoiDungLoiNhac.getText().toString();
-                LoiNhac ln = new LoiNhac(noiDungLoiNhac, dateSelected, 0);
-                arrayLoiNhac.add(ln);
-                arrayLNAdd.add(ln);
-                adapter.notifyDataSetChanged();
+                Toast.makeText(LoiNhacActivity.this, noiDungLoiNhac, Toast.LENGTH_SHORT).show();
+                if(!noiDungLoiNhac.equals("")) {
+                    LoiNhac ln = new LoiNhac(noiDungLoiNhac, dateSelected, 0);
+                    String id_long = db.createLoiNhac(ln) + "";
+                    int id = Integer.parseInt(id_long);
+                    ln.setId(id);
+                    arrayLoiNhac.add(ln);
+//                    arrayLNAdd.add(ln);
+                    adapter.notifyDataSetChanged();
+                    txtNothing.setVisibility(View.GONE);
+                }
                 dialog.dismiss();
 
             }

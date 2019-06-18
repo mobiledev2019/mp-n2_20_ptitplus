@@ -34,19 +34,19 @@
     </android.support.design.widget.AppBarLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         android:id="@+id/showDate"
-        android:text="25/07/2019"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="132dp"
+        android:background="?attr/colorPrimary"
+        android:paddingLeft="20dp"
         android:paddingTop="50dp"
         android:paddingBottom="50dp"
-        android:paddingLeft="20dp"
+        android:text="25/07/2019"
         android:textColor="#fff"
-        android:background="?attr/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
 
         />
 
@@ -75,7 +75,7 @@
         android:id="@+id/btAddNotif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="82dp"
         android:layout_marginEnd="44dp"
         android:layout_marginRight="44dp"
         android:background="@drawable/custom_button"

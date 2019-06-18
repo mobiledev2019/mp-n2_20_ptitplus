@@ -286,6 +286,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return loiNhacs;
     }
+    public List<LoiNhac> getAllLoiNhac() {
+        List<LoiNhac> loiNhacs = new ArrayList<LoiNhac>();
+        String selectQuery = "SELECT  * FROM " + TABLE_LOINHAC;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                LoiNhac ln = new LoiNhac();
+                ln.setId(c.getInt(c.getColumnIndex("id")));
+                ln.setNoiDung(c.getString(c.getColumnIndex("noiDung")));
+                ln.setDate(c.getString(c.getColumnIndex("date")));
+                ln.setTrangthai(c.getInt(c.getColumnIndex("trangThai")));
+
+                // adding to todo list
+                loiNhacs.add(ln);
+            } while (c.moveToNext());
+        }
+
+        return loiNhacs;
+    }
     public int updateLoiNhac(LoiNhac loiNhac) {
         SQLiteDatabase db = this.getWritableDatabase();
 
